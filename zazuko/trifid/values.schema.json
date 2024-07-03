@@ -1,0 +1,333 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/HelmValues",
+  "definitions": {
+    "HelmValues": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "replicaCount": {
+          "type": "integer"
+        },
+        "image": {
+          "$ref": "#/definitions/Image"
+        },
+        "imagePullSecrets": {
+          "type": "array",
+          "items": {}
+        },
+        "nameOverride": {
+          "type": "string"
+        },
+        "fullnameOverride": {
+          "type": "string"
+        },
+        "serviceAccount": {
+          "$ref": "#/definitions/ServiceAccount"
+        },
+        "podAnnotations": {
+          "$ref": "#/definitions/Annotations"
+        },
+        "podLabels": {
+          "$ref": "#/definitions/Labels"
+        },
+        "podSecurityContext": {
+          "$ref": "#/definitions/PodSecurityContext"
+        },
+        "securityContext": {
+          "$ref": "#/definitions/SecurityContext"
+        },
+        "service": {
+          "$ref": "#/definitions/Service"
+        },
+        "ingress": {
+          "$ref": "#/definitions/Ingress"
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "livenessProbe": {
+          "$ref": "#/definitions/Probe"
+        },
+        "readinessProbe": {
+          "$ref": "#/definitions/Probe"
+        },
+        "autoscaling": {
+          "$ref": "#/definitions/Autoscaling"
+        },
+        "volumes": {
+          "type": "array",
+          "items": {}
+        },
+        "volumeMounts": {
+          "type": "array",
+          "items": {}
+        },
+        "nodeSelector": {
+          "$ref": "#/definitions/NodeSelector"
+        },
+        "tolerations": {
+          "type": "array",
+          "items": {}
+        },
+        "affinity": {
+          "$ref": "#/definitions/Affinity"
+        }
+      },
+      "title": "Helm Values"
+    },
+    "Annotations": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Annotations"
+    },
+    "Labels": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Labels"
+    },
+    "PodSecurityContext": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "fsGroup": {
+          "type": "integer"
+        },
+        "runAsGroup": {
+          "type": "integer"
+        },
+        "runAsNonRoot": {
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "type": "integer"
+        }
+      },
+      "title": "PodSecurityContext"
+    },
+    "SecurityContext": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "type": "boolean"
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "privileged": {
+          "type": "boolean"
+        },
+        "readOnlyRootFilesystem": {
+          "type": "boolean"
+        },
+        "runAsNonRoot": {
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "type": "integer"
+        },
+        "seLinuxOptions": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "title": "SecurityContext"
+    },
+    "Affinity": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Affinity"
+    },
+    "NodeSelector": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "NodeSelector"
+    },
+    "Autoscaling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "minReplicas": {
+          "type": "integer"
+        },
+        "maxReplicas": {
+          "type": "integer"
+        },
+        "targetCPUUtilizationPercentage": {
+          "type": "integer"
+        },
+        "targetMemoryUtilizationPercentage": {
+          "type": "integer"
+        }
+      },
+      "title": "Autoscaling"
+    },
+    "Image": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "pullPolicy": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "title": "Image"
+    },
+    "Ingress": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        },
+        "annotations": {
+          "$ref": "#/definitions/Annotations"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Host"
+          }
+        },
+        "tls": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "title": "Ingress"
+    },
+    "Host": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Path"
+          }
+        }
+      },
+      "title": "Host"
+    },
+    "Path": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "pathType": {
+          "type": "string",
+          "enum": [
+            "Exact",
+            "ImplementationSpecific",
+            "Prefix"
+          ]
+        }
+      },
+      "title": "Path"
+    },
+    "Probe": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "httpGet": {
+          "$ref": "#/definitions/HTTPGet"
+        }
+      },
+      "title": "Probe"
+    },
+    "Resources": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "limits": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "title": "Resources"
+    },
+    "HTTPGet": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "port": {
+          "type": "string"
+        }
+      },
+      "title": "HTTPGet"
+    },
+    "Service": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        }
+      },
+      "title": "Service"
+    },
+    "ServiceAccount": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "create": {
+          "type": "boolean"
+        },
+        "automount": {
+          "type": "boolean"
+        },
+        "annotations": {
+          "$ref": "#/definitions/Annotations"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ServiceAccount"
+    }
+  }
+}

@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=values.schema.json
+
 # Default values for trifid.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -5,7 +7,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: ghcr.io/zazuko/trifid
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -16,7 +18,7 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Automatically mount a ServiceAccount's API credentials?
   automount: true
   # Annotations to add to the service account
@@ -33,17 +35,16 @@ podSecurityContext:
   # fsGroup: 2000
 
 securityContext:
-  {}
+  runAsNonRoot: true
+  runAsUser: 1000
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false
@@ -53,14 +54,14 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
+    - host: trifid-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
+  #  - secretName: trifid-example-tls
   #    hosts:
-  #      - chart-example.local
+  #      - trifid-example.local
 
 resources:
   {}
@@ -77,11 +78,11 @@ resources:
 
 livenessProbe:
   httpGet:
-    path: /
+    path: /healthz
     port: http
 readinessProbe:
   httpGet:
-    path: /
+    path: /healthz
     port: http
 
 autoscaling:
