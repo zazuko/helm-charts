@@ -6,6 +6,15 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "sparql": {
+          "$ref": "#/definitions/Sparql"
+        },
+        "config": {
+          "$ref": "#/definitions/Config"
+        },
+        "dataset": {
+          "$ref": "#/definitions/Dataset"
+        },
         "replicaCount": {
           "type": "integer"
         },
@@ -75,6 +84,42 @@
         }
       },
       "title": "Helm Values"
+    },
+    "Sparql": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "Sparql"
+    },
+    "Config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string"
+        }
+      },
+      "title": "Config"
+    },
+    "Dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseUrl": {
+          "type": "string"
+        }
+      },
+      "title": "Dataset"
     },
     "Annotations": {
       "type": "object",

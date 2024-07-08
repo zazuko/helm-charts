@@ -50,6 +50,26 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          env:
+            - name: TRIFID_CONFIG
+              value: "{{ .Values.config.file }}"
+            - name: SPARQL_ENDPOINT_URL
+              value: "{{ .Values.sparql.endpoint }}"
+            {{- if .Values.sparql.username }}
+            - name: SPARQL_USER
+              value: "{{ .Values.sparql.username }}"
+            {{- end }}
+            {{- if .Values.sparql.password }}
+            - name: SPARQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "trifid.fullname" . }}
+                  key: sparql-password
+            {{- end }}
+            {{- if .Values.dataset.baseUrl }}
+            - name: DATASET_BASE_URL
+              value: "{{ .Values.dataset.baseUrl }}"
+            {{- end }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

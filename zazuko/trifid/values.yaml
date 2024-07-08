@@ -4,6 +4,17 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+sparql:
+  endpoint: "https://lindas-cached.cluster.ldbar.ch/query"
+  # username: ""
+  # password: ""
+
+config:
+  file: "instances/docker-sparql/config.yaml"
+
+dataset:
+  baseUrl: "https://ld.admin.ch/"
+
 replicaCount: 1
 
 image:
@@ -32,7 +43,7 @@ podLabels: {}
 
 podSecurityContext:
   {}
-  # fsGroup: 2000
+  # fsGroup: 1000
 
 securityContext:
   runAsNonRoot: true
