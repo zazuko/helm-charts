@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  trifid:
+  - apiVersion: v2
+    appVersion: v5.0.4
+    created: "2024-07-10T16:35:42.375200861Z"
+    description: Zazuko Trifid
+    digest: 6ea365aabfb933d76daa8c6c4dc163e625152f77bb19a7e54aa15a8991b45fad
+    home: https://github.com/zazuko/trifid
+    name: trifid
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-07-10T16:35:42.375206431Z"
