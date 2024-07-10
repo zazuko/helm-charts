@@ -4,6 +4,12 @@ This repository contains the Helm charts for deploying some of the apps we maint
 
 ## Usage
 
+To use the charts, you need to add the Zazuko Helm repository:
+
+```sh
+helm repo add zazuko https://charts.zazuko.com
+```
+
 ## Development
 
 Make sure to run the following command to make sure that the charts are valid:
