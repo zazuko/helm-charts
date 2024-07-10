@@ -15,7 +15,7 @@ helm lint zazuko/*
 And that one to generate/update the README file for each chart:
 
 ```sh
-./docs.sh
+./scripts/docs.sh
 ```
 
 To preview a chart, you can use the following command:
