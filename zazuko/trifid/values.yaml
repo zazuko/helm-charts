@@ -1,27 +1,42 @@
 # yaml-language-server: $schema=values.schema.json
 
-# Default values for trifid.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
+# Information about the SPARQL endpoint
 sparql:
-  endpoint: "https://lindas-cached.cluster.ldbar.ch/query"
-  # username: ""
-  # password: ""
+  # -- URL of the SPARQL endpoint (required)
+  endpoint: ""
+  # -- Username for the SPARQL endpoint
+  username: ""
+  # -- Password for the SPARQL endpoint
+  password: ""
 
+# Changes to the Trifid configuration
 config:
-  file: "instances/docker-sparql/config.yaml"
+  # -- Override the path to the Trifid configuration file
+  file: ""
 
+# Set the base URL for the dataset, to allow some rewriting features
 dataset:
-  baseUrl: "https://ld.admin.ch/"
+  # -- Base URL for the dataset
+  baseUrl: ""
 
+# -- Number of replicas
 replicaCount: 1
 
+# Information about the Trifid Docker image to use.
+# In case you want to use a custom image, you can set the repository and tag here.
 image:
+  # -- Docker image used to deploy the Trifid instance
   repository: ghcr.io/zazuko/trifid
+  # -- Configure the imagePullPolicy, values could be: `Always`, `IfNotPresent`, `Never`
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
+
+# -- Additional environment variables to set
+extraEnv:
+  []
+  # - name: MY_ENV_VAR
+  #   value: my-value
 
 imagePullSecrets: []
 nameOverride: ""
@@ -46,18 +61,23 @@ podSecurityContext:
   # fsGroup: 1000
 
 securityContext:
+  # -- Run the container as a non-root user?
   runAsNonRoot: true
+  # -- User ID to run the container as
   runAsUser: 1000
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
+  # -- Capabilities to add/drop
+  capabilities: {}
+  # -- Is the filesystem read-only?
+  readOnlyRootFilesystem: true
 
 service:
+  # -- Type of service to create (`ClusterIP`, `NodePort`, `LoadBalancer`, or `ExternalName`)
   type: ClusterIP
+  # -- Port where Trifid is exposed
   port: 8080
 
 ingress:
+  # -- Enable Ingress
   enabled: false
   className: ""
   annotations:
