@@ -10,7 +10,7 @@
 
 ## Installation
 
-```bash
+```sh
 helm repo add zazuko https://charts.zazuko.com
 helm install {{ template "chart.name" . }} zazuko/{{ template "chart.name" . }}
 ```
