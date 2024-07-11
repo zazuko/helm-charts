@@ -27,7 +27,7 @@ jobs:
         uses: azure/setup-helm@v4
 
       - name: Run helm-docs
-        uses: losisin/helm-docs-github-action@v1
+        uses: losisin/helm-docs-github-action@v1.3.0
         with:
           chart-search-root: zazuko
           git-push: true
