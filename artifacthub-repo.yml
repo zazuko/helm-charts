@@ -1,0 +1,5 @@
+# Artifact Hub repository metadata file
+repositoryID: d5187125-37c1-4ce9-847a-e88982b8533d
+owners: # (optional, used to claim repository ownership)
+  - name: ludovicm67
+    email: ludovicmuller1@gmail.com
