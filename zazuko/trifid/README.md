@@ -8,7 +8,7 @@ Zazuko Trifid
 
 ## Installation
 
-```bash
+```sh
 helm repo add zazuko https://charts.zazuko.com
 helm install trifid zazuko/trifid
 ```
