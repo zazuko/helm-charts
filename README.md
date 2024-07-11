@@ -1,10 +1,13 @@
-# Helm Charts
+# Zazuko Helm Charts
+
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/zazuko)](https://artifacthub.io/packages/search?repo=zazuko)
+[![Downloads](https://img.shields.io/github/downloads/zazuko/helm-charts/total)](https://github.com/zazuko/helm-charts/releases)
 
 This repository contains the Helm charts for deploying some of the apps we maintain on Kubernetes.
 
 ## Usage
 
-To use the charts, you need to add the Zazuko Helm repository:
+To use the charts, you need to add the Zazuko Helm repository using the following command:
 
 ```sh
 helm repo add zazuko https://charts.zazuko.com
