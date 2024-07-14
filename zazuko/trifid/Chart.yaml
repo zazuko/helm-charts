@@ -24,3 +24,6 @@ version: 0.1.0
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "v5.0.4"
+
+annotations:
+  artifacthub.io/license: Apache-2.0
