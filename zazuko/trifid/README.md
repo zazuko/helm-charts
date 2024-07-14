@@ -58,7 +58,7 @@ helm install trifid zazuko/trifid
 | serviceAccount.automount | bool | `true` |  |
 | serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `""` |  |
-| sparql.endpoint | string | `""` | URL of the SPARQL endpoint (required) |
+| sparql.endpoint | string | `"http://example.com/query"` | URL of the SPARQL endpoint (required) |
 | sparql.password | string | `""` | Password for the SPARQL endpoint |
 | sparql.username | string | `""` | Username for the SPARQL endpoint |
 | tolerations | list | `[]` |  |
