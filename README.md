@@ -54,3 +54,14 @@ To uninstall a chart, you can use the following command:
 CHART_NAME=trifid
 helm uninstall "${CHART_NAME}-release" # --namespace default
 ```
+
+_Optional:_ To sign the charts, you can use the following commands:
+
+```sh
+CHART_NAME=trifid
+KEY_NAME='Name for your GPG key'
+gpg --full-generate-key # Generate a new GPG key
+gpg --output private.pgp --armor --export-secret-key "${KEY_NAME}" # Export the private key
+cat private.pgp | gpg --dearmor --output private.gpg # Convert the private key to GPG
+helm package --sign --key "${KEY_NAME}" --keyring private.pgp "zazuko/${CHART_NAME}" # Package and sign the chart
+```

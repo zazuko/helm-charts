@@ -34,6 +34,10 @@ jobs:
           git-commit-message: "docs: update chart documentation"
           template-files: "../.github/docs/helm-docs.tpl.md"
 
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --dearmor --output keyring.gpg
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
@@ -41,3 +45,6 @@ jobs:
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_KEY: "Zazuko Helm Charts"
+          CR_KEYRING: keyring.gpg
+          CR_SIGN: true
