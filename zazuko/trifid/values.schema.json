@@ -86,14 +86,18 @@
           "$ref": "#/definitions/Affinity"
         }
       },
-      "title": "Helm Values"
+      "title": "Helm Values",
+      "required": [
+        "sparql"
+      ]
     },
     "Sparql": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "endpoint": {
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "username": {
           "type": "string"

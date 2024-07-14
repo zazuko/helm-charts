@@ -3,7 +3,7 @@
 # Information about the SPARQL endpoint
 sparql:
   # -- URL of the SPARQL endpoint (required)
-  endpoint: ""
+  endpoint: "http://example.com/query"
   # -- Username for the SPARQL endpoint
   username: ""
   # -- Password for the SPARQL endpoint
