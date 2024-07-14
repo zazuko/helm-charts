@@ -1,6 +1,29 @@
 apiVersion: v1
 entries:
   trifid:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/trifid
+        - name: Zazuko
+          url: https://www.zazuko.com/
+        - name: Trifid
+          url: https://github.com/zazuko/trifid
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
+    appVersion: v5.0.4
+    created: "2024-07-14T16:08:42.365554151Z"
+    description: Zazuko Trifid
+    digest: d501c26215a34926e2b8750f893a28ba09c3998668ed8595117c859c1568566c
+    home: https://github.com/zazuko/trifid
+    icon: https://charts.zazuko.com/icons/logo-zazuko.svg
+    name: trifid
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.1/trifid-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: v5.0.4
     created: "2024-07-10T16:35:42.375200861Z"
@@ -12,4 +35,4 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-10T16:35:42.375206431Z"
+generated: "2024-07-14T16:08:42.36556965Z"
