@@ -17,11 +17,8 @@ helm install trifid zazuko/trifid
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| autoscaling.enabled | bool | `false` |  |
-| autoscaling.maxReplicas | int | `100` |  |
-| autoscaling.minReplicas | int | `1` |  |
-| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| affinity | object | `{}` | Configure affinity |
+| autoscaling | object | `{"enabled":false,"maxReplicas":100,"minReplicas":1,"targetCPUUtilizationPercentage":80}` | Configure autoscaling |
 | config.file | string | `""` | Override the path to the Trifid configuration file |
 | dataset.baseUrl | string | `""` | Base URL for the dataset |
 | extraEnv | list | `[]` | Additional environment variables to set |
@@ -29,21 +26,21 @@ helm install trifid zazuko/trifid
 | image.pullPolicy | string | `"IfNotPresent"` | Configure the imagePullPolicy, values could be: `Always`, `IfNotPresent`, `Never` |
 | image.repository | string | `"ghcr.io/zazuko/trifid"` | Docker image used to deploy the Trifid instance |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
-| imagePullSecrets | list | `[]` |  |
+| imagePullSecrets | list | `[]` | Secrets used to pull the Docker image |
 | ingress.annotations | object | `{}` | Ingress annotations |
 | ingress.className | string | `""` | Ingress class to use |
 | ingress.enabled | bool | `false` | Enable Ingress |
 | ingress.hosts | list | `[{"host":"trifid-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | Ingress hosts |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
-| livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Configure the liveness probe |
+| livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Liveness probe |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
+| nodeSelector | object | `{}` | Pod node selector |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Configure the readiness probe |
+| readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Readiness probe |
 | replicaCount | int | `1` | Number of replicas |
-| resources | object | `{}` | Configure resource requests and limits |
+| resources | object | `{}` | Pod resource requests and limits |
 | securityContext.capabilities | object | `{}` | Capabilities to add/drop |
 | securityContext.readOnlyRootFilesystem | bool | `true` | Is the filesystem read-only? |
 | securityContext.runAsNonRoot | bool | `true` | Run the container as a non-root user? |
@@ -57,7 +54,7 @@ helm install trifid zazuko/trifid
 | sparql.endpoint | string | `"http://example.com/query"` | URL of the SPARQL endpoint (required) |
 | sparql.password | string | `""` | Password for the SPARQL endpoint |
 | sparql.username | string | `""` | Username for the SPARQL endpoint |
-| tolerations | list | `[]` |  |
-| volumeMounts | list | `[]` |  |
-| volumes | list | `[]` |  |
+| tolerations | list | `[]` | Pod tolerations |
+| volumeMounts | list | `[]` | Additional volumeMounts on the output Deployment definition |
+| volumes | list | `[]` | Additional volumes on the output Deployment definition |
 
