@@ -2,6 +2,7 @@ apiVersion: v2
 name: trifid
 description: Zazuko Trifid
 home: https://github.com/zazuko/trifid
+icon: https://minio.lab.sspcloud.fr/projet-onyxia/assets/servicesImg/trifid.svg
 
 # A chart can be either an 'application' or a 'library' chart.
 #
