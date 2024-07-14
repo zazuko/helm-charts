@@ -30,24 +30,20 @@ helm install trifid zazuko/trifid
 | image.repository | string | `"ghcr.io/zazuko/trifid"` | Docker image used to deploy the Trifid instance |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.className | string | `""` |  |
+| ingress.annotations | object | `{}` | Ingress annotations |
+| ingress.className | string | `""` | Ingress class to use |
 | ingress.enabled | bool | `false` | Enable Ingress |
-| ingress.hosts[0].host | string | `"trifid-example.local"` |  |
-| ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
-| ingress.tls | list | `[]` |  |
-| livenessProbe.httpGet.path | string | `"/healthz"` |  |
-| livenessProbe.httpGet.port | string | `"http"` |  |
+| ingress.hosts | list | `[{"host":"trifid-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | Ingress hosts |
+| ingress.tls | list | `[]` | Ingress TLS configuration |
+| livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Configure the liveness probe |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| readinessProbe.httpGet.path | string | `"/healthz"` |  |
-| readinessProbe.httpGet.port | string | `"http"` |  |
+| readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Configure the readiness probe |
 | replicaCount | int | `1` | Number of replicas |
-| resources | object | `{}` |  |
+| resources | object | `{}` | Configure resource requests and limits |
 | securityContext.capabilities | object | `{}` | Capabilities to add/drop |
 | securityContext.readOnlyRootFilesystem | bool | `true` | Is the filesystem read-only? |
 | securityContext.runAsNonRoot | bool | `true` | Run the container as a non-root user? |
