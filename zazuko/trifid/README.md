@@ -17,44 +17,48 @@ helm install trifid zazuko/trifid
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Configure affinity |
-| autoscaling | object | `{"enabled":false,"maxReplicas":100,"minReplicas":1,"targetCPUUtilizationPercentage":80}` | Configure autoscaling |
-| config.file | string | `""` | Override the path to the Trifid configuration file |
-| dataset.baseUrl | string | `""` | Base URL for the dataset |
-| extraEnv | list | `[]` | Additional environment variables to set |
-| fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` | Configure the imagePullPolicy, values could be: `Always`, `IfNotPresent`, `Never` |
-| image.repository | string | `"ghcr.io/zazuko/trifid"` | Docker image used to deploy the Trifid instance |
-| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
-| imagePullSecrets | list | `[]` | Secrets used to pull the Docker image |
-| ingress.annotations | object | `{}` | Ingress annotations |
-| ingress.className | string | `""` | Ingress class to use |
-| ingress.enabled | bool | `false` | Enable Ingress |
-| ingress.hosts | list | `[{"host":"trifid-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | Ingress hosts |
-| ingress.tls | list | `[]` | Ingress TLS configuration |
-| livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Liveness probe |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` | Pod node selector |
-| podAnnotations | object | `{}` |  |
-| podLabels | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
-| readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | Readiness probe |
-| replicaCount | int | `1` | Number of replicas |
-| resources | object | `{}` | Pod resource requests and limits |
-| securityContext.capabilities | object | `{}` | Capabilities to add/drop |
-| securityContext.readOnlyRootFilesystem | bool | `true` | Is the filesystem read-only? |
-| securityContext.runAsNonRoot | bool | `true` | Run the container as a non-root user? |
-| securityContext.runAsUser | int | `1000` | User ID to run the container as |
-| service.port | int | `8080` | Port where Trifid is exposed |
-| service.type | string | `"ClusterIP"` | Type of service to create (`ClusterIP`, `NodePort`, `LoadBalancer`, or `ExternalName`) |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.automount | bool | `true` |  |
-| serviceAccount.create | bool | `false` |  |
-| serviceAccount.name | string | `""` |  |
-| sparql.endpoint | string | `"http://example.com/query"` | URL of the SPARQL endpoint (required) |
-| sparql.password | string | `""` | Password for the SPARQL endpoint |
-| sparql.username | string | `""` | Username for the SPARQL endpoint |
-| tolerations | list | `[]` | Pod tolerations |
-| volumeMounts | list | `[]` | Additional volumeMounts on the output Deployment definition |
-| volumes | list | `[]` | Additional volumes on the output Deployment definition |
+| affinity | object | `{}` | affinity to use |
+| autoscaling.enabled | bool | `false` | enabled allows you to enable or disable autoscaling |
+| autoscaling.maxReplicas | int | `100` | maxReplicas is the maximum number of replicas that will be set when autoscaling is enabled |
+| autoscaling.minReplicas | int | `1` | minReplicas is the minimum number of replicas that will be set when autoscaling is enabled |
+| autoscaling.targetCPUUtilizationPercentage | int | `80` | targetCPUUtilizationPercentage is the target average CPU utilization across all pods |
+| autoscaling.targetMemoryUtilizationPercentage | int | `80` | targetMemoryUtilizationPercentage is the target average memory utilization across all pods |
+| config.file | string | `""` | file is the path to the Trifid configuration file |
+| dataset.baseUrl | string | `""` | baseUrl is the base URL for the dataset |
+| extraEnv | list | `[]` | extraEnv is a list of extra environment variables to set |
+| fullnameOverride | string | `""` | fullnameOverride overrides the full name of the chart |
+| image.pullPolicy | string | `"IfNotPresent"` | pullPolicy is the policy to use when pulling the image |
+| image.repository | string | `"ghcr.io/zazuko/trifid"` | repository is the Docker image to use |
+| image.tag | string | `""` | tag is used to overrides the image tag whose default is the chart appVersion |
+| imagePullSecrets | list | `[]` | imagePullSecrets used to pull the Docker image |
+| ingress.annotations | object | `{}` | annotations to add to the Ingress |
+| ingress.className | string | `""` | className is the ingress class to use |
+| ingress.enabled | bool | `false` | enabled allows you to enable or disable the Ingress |
+| ingress.hosts | list | `[{"host":"trifid-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | hosts is the list of hostnames to be exposed |
+| ingress.tls | list | `[]` | tls is the list of TLS configuration |
+| livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | livenessProbe is a health check to determine if the container is still running |
+| nameOverride | string | `""` | nameOverride overrides the chart name |
+| nodeSelector | object | `{}` | nodeSelector to use |
+| podAnnotations | object | `{}` | podAnnotations to use |
+| podLabels | object | `{}` | podLabels to use |
+| podSecurityContext | object | `{}` | podSecurityContext to use |
+| readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | readinessProbe is a health check to determine if the container is ready to serve traffic |
+| replicaCount | int | `1` | replicaCount is the number of replicas to deploy |
+| resources | object | `{}` | resources to request for the pod |
+| securityContext.capabilities | object | `{}` | capabilities to add/drop |
+| securityContext.readOnlyRootFilesystem | bool | `true` | readOnlyRootFilesystem tells if the container should have a read-only root filesystem |
+| securityContext.runAsNonRoot | bool | `true` | runAsNonRoot tells if the container should run as a non-root user |
+| securityContext.runAsUser | int | `1000` | runAsUser is the user ID to run the container as |
+| service.port | int | `8080` | port is the port the service will listen on |
+| service.type | string | `"ClusterIP"` | type is the type of service to create |
+| serviceAccount.annotations | object | `{}` | annotations to add to the service account |
+| serviceAccount.automount | bool | `true` | automount tells if the service account should be automounted |
+| serviceAccount.create | bool | `false` | create tells if a service account should be created |
+| serviceAccount.name | string | `""` | name is the name of the service account to use |
+| sparql.endpoint | string | `"http://example.com/query"` | endpoint is the URL of the SPARQL endpoint (required) |
+| sparql.password | string | `""` | password for the SPARQL endpoint |
+| sparql.username | string | `""` | username for the SPARQL endpoint |
+| tolerations | list | `[]` | tolerations to use |
+| volumeMounts | list | `[]` | volume mounts to use |
+| volumes | list | `[]` | volumes to mount on the output Deployment definition |
 
