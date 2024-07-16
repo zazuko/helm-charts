@@ -16,7 +16,7 @@
           "$ref": "#/definitions/Dataset"
         },
         "replicaCount": {
-          "type": "integer"
+          "$ref": "#/definitions/ReplicaCount"
         },
         "image": {
           "$ref": "#/definitions/Image"
@@ -369,7 +369,8 @@
           "type": "string"
         }
       },
-      "title": "HTTPGet"
+      "title": "HTTPGet",
+      "description": "HTTPGet describes an HTTP Get request used to perform readiness or liveness checks."
     },
     "Service": {
       "type": "object",
@@ -382,7 +383,8 @@
           "type": "integer"
         }
       },
-      "title": "Service"
+      "title": "Service",
+      "description": "Service configuration"
     },
     "ServiceAccount": {
       "type": "object",
@@ -401,7 +403,15 @@
           "type": "string"
         }
       },
-      "title": "ServiceAccount"
+      "title": "ServiceAccount",
+      "description": "ServiceAccount configuration"
+    },
+    "ReplicaCount": {
+      "type": "integer",
+      "title": "ReplicaCount",
+      "description": "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
+      "default": 1,
+      "minimum": 0
     }
   }
 }
