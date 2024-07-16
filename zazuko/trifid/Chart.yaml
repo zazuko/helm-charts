@@ -1,6 +1,6 @@
 apiVersion: v2
 name: trifid
-description: Zazuko Trifid
+description: Lightweight Linked Data Server and Proxy
 home: https://github.com/zazuko/trifid
 icon: https://charts.zazuko.com/icons/logo-zazuko.svg
 
