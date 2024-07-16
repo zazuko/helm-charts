@@ -2,104 +2,112 @@
 
 # Information about the SPARQL endpoint
 sparql:
-  # -- URL of the SPARQL endpoint (required)
+  # -- endpoint is the URL of the SPARQL endpoint (required)
   endpoint: "http://example.com/query"
-  # -- Username for the SPARQL endpoint
+  # -- username for the SPARQL endpoint
   username: ""
-  # -- Password for the SPARQL endpoint
+  # -- password for the SPARQL endpoint
   password: ""
 
 # Changes to the Trifid configuration
 config:
-  # -- Override the path to the Trifid configuration file
+  # -- file is the path to the Trifid configuration file
   file: ""
 
 # Set the base URL for the dataset, to allow some rewriting features
 dataset:
-  # -- Base URL for the dataset
+  # -- baseUrl is the base URL for the dataset
   baseUrl: ""
 
-# -- Number of replicas
+# -- replicaCount is the number of replicas to deploy
 replicaCount: 1
 
 # Information about the Trifid Docker image to use.
 # In case you want to use a custom image, you can set the repository and tag here.
 image:
-  # -- Docker image used to deploy the Trifid instance
+  # -- repository is the Docker image to use
   repository: ghcr.io/zazuko/trifid
-  # -- Configure the imagePullPolicy, values could be: `Always`, `IfNotPresent`, `Never`
+  # -- pullPolicy is the policy to use when pulling the image
   pullPolicy: IfNotPresent
-  # -- Overrides the image tag whose default is the chart appVersion.
+  # -- tag is used to overrides the image tag whose default is the chart appVersion
   tag: ""
 
-# -- Additional environment variables to set
+# -- extraEnv is a list of extra environment variables to set
 extraEnv:
   []
   # - name: MY_ENV_VAR
   #   value: my-value
 
-# -- Secrets used to pull the Docker image
+# -- imagePullSecrets used to pull the Docker image
 imagePullSecrets: []
+# -- nameOverride overrides the chart name
 nameOverride: ""
+# -- fullnameOverride overrides the full name of the chart
 fullnameOverride: ""
 
+# Service account configuration
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- create tells if a service account should be created
   create: false
-  # Automatically mount a ServiceAccount's API credentials?
+  # -- automount tells if the service account should be automounted
   automount: true
-  # Annotations to add to the service account
+  # -- annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- name is the name of the service account to use
   name: ""
 
+# -- podAnnotations to use
 podAnnotations: {}
+# -- podLabels to use
 podLabels: {}
 
+# -- podSecurityContext to use
 podSecurityContext:
   {}
   # fsGroup: 1000
 
+# Security context configuration
 securityContext:
-  # -- Run the container as a non-root user?
+  # -- runAsNonRoot tells if the container should run as a non-root user
   runAsNonRoot: true
-  # -- User ID to run the container as
+  # -- runAsUser is the user ID to run the container as
   runAsUser: 1000
-  # -- Capabilities to add/drop
+  # -- capabilities to add/drop
   capabilities: {}
-  # -- Is the filesystem read-only?
+  # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
   readOnlyRootFilesystem: true
 
+# Service configuration
 service:
-  # -- Type of service to create (`ClusterIP`, `NodePort`, `LoadBalancer`, or `ExternalName`)
+  # -- type is the type of service to create
   type: ClusterIP
-  # -- Port where Trifid is exposed
+  # -- port is the port the service will listen on
   port: 8080
 
+# Ingress configuration
 ingress:
-  # -- Enable Ingress
+  # -- enabled allows you to enable or disable the Ingress
   enabled: false
-  # -- Ingress class to use
+  # -- className is the ingress class to use
   className: ""
-  # -- Ingress annotations
+  # -- annotations to add to the Ingress
   annotations:
     {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  # -- Ingress hosts
+  # -- hosts is the list of hostnames to be exposed
   hosts:
     - host: trifid-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
-  # -- Ingress TLS configuration
+  # -- tls is the list of TLS configuration
   tls: []
   #  - secretName: trifid-example-tls
   #    hosts:
   #      - trifid-example.local
 
-# -- Pod resource requests and limits
+# -- resources to request for the pod
 resources:
   {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -113,44 +121,49 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
-# -- Liveness probe
+# -- livenessProbe is a health check to determine if the container is still running
 livenessProbe:
   httpGet:
     path: /healthz
     port: http
 
-# -- Readiness probe
+# -- readinessProbe is a health check to determine if the container is ready to serve traffic
 readinessProbe:
   httpGet:
     path: /healthz
     port: http
 
-# -- Configure autoscaling
+# Configure autoscaling
 autoscaling:
+  # -- enabled allows you to enable or disable autoscaling
   enabled: false
+  # -- minReplicas is the minimum number of replicas that will be set when autoscaling is enabled
   minReplicas: 1
+  # -- maxReplicas is the maximum number of replicas that will be set when autoscaling is enabled
   maxReplicas: 100
+  # -- targetCPUUtilizationPercentage is the target average CPU utilization across all pods
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  # -- targetMemoryUtilizationPercentage is the target average memory utilization across all pods
+  targetMemoryUtilizationPercentage: 80
 
-# -- Additional volumes on the output Deployment definition
+# -- volumes to mount on the output Deployment definition
 volumes: []
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
-# -- Additional volumeMounts on the output Deployment definition
+# -- volume mounts to use
 volumeMounts: []
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
-# -- Pod node selector
+# -- nodeSelector to use
 nodeSelector: {}
 
-# -- Pod tolerations
+# -- tolerations to use
 tolerations: []
 
-# -- Configure affinity
+# -- affinity to use
 affinity: {}
