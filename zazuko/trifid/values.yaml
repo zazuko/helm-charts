@@ -3,7 +3,7 @@
 # Information about the SPARQL endpoint
 sparql:
   # -- endpoint is the URL of the SPARQL endpoint (required)
-  endpoint: "http://example.com/query"
+  endpoint: "https://example.com/query"
   # -- username for the SPARQL endpoint
   username: ""
   # -- password for the SPARQL endpoint
@@ -61,21 +61,33 @@ podAnnotations: {}
 # -- podLabels to use
 podLabels: {}
 
-# -- podSecurityContext to use
+# Pod security context configuration
 podSecurityContext:
-  {}
-  # fsGroup: 1000
-
-# Security context configuration
-securityContext:
+  # -- fsGroup is the group ID to run the container as
+  fsGroup: 1000
+  # -- runAsGroup is the group ID to run the container as
+  runAsGroup: 1000
   # -- runAsNonRoot tells if the container should run as a non-root user
   runAsNonRoot: true
   # -- runAsUser is the user ID to run the container as
   runAsUser: 1000
+
+# Security context configuration
+securityContext:
+  # -- allowPrivilegeEscalation tells if the container can request to allow privilege escalation
+  allowPrivilegeEscalation: false
   # -- capabilities to add/drop
   capabilities: {}
+  # -- privileged tells if the container is privileged
+  privileged: false
+  # -- runAsNonRoot tells if the container should run as a non-root user
+  runAsNonRoot: true
+  # -- runAsUser is the user ID to run the container as
+  runAsUser: 1000
   # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
   readOnlyRootFilesystem: true
+  # -- seLinuxOptions to add
+  seLinuxOptions: {}
 
 # Service configuration
 service:

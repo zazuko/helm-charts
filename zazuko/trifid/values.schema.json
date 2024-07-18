@@ -72,18 +72,21 @@
         },
         "volumes": {
           "type": "array",
-          "items": {}
+          "items": {},
+          "default": []
         },
         "volumeMounts": {
           "type": "array",
-          "items": {}
+          "items": {},
+          "default": []
         },
         "nodeSelector": {
           "$ref": "#/definitions/NodeSelector"
         },
         "tolerations": {
           "type": "array",
-          "items": {}
+          "items": {},
+          "default": []
         },
         "affinity": {
           "$ref": "#/definitions/Affinity"
@@ -100,13 +103,16 @@
       "properties": {
         "endpoint": {
           "type": "string",
-          "format": "uri"
+          "format": "uri",
+          "default": "https://example.com/query"
         },
         "username": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         "password": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         }
       },
       "title": "Sparql",
@@ -119,7 +125,8 @@
       "additionalProperties": false,
       "properties": {
         "file": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         }
       },
       "title": "Config"
@@ -129,7 +136,8 @@
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         }
       },
       "title": "Dataset"
@@ -151,51 +159,60 @@
       "additionalProperties": true,
       "properties": {
         "fsGroup": {
-          "type": "integer"
+          "type": "integer",
+          "default": 1000
         },
         "runAsGroup": {
-          "type": "integer"
+          "type": "integer",
+          "default": 1000
         },
         "runAsNonRoot": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         },
         "runAsUser": {
-          "type": "integer"
+          "type": "integer",
+          "default": 1000
         }
       },
-      "title": "PodSecurityContext",
-      "default": {}
+      "title": "PodSecurityContext"
     },
     "SecurityContext": {
       "type": "object",
       "additionalProperties": true,
       "properties": {
         "allowPrivilegeEscalation": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "capabilities": {
           "type": "object",
-          "additionalProperties": true
+          "additionalProperties": true,
+          "default": {}
         },
         "privileged": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "readOnlyRootFilesystem": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         },
         "runAsNonRoot": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         },
         "runAsUser": {
-          "type": "integer"
+          "type": "integer",
+          "default": 1000
         },
         "seLinuxOptions": {
           "type": "object",
-          "additionalProperties": true
+          "additionalProperties": true,
+          "default": {}
         }
       },
-      "title": "SecurityContext",
-      "default": {}
+      "title": "SecurityContext"
     },
     "Affinity": {
       "type": "object",
@@ -214,50 +231,51 @@
       "additionalProperties": false,
       "properties": {
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "minReplicas": {
-          "type": "integer"
+          "type": "integer",
+          "default": 1
         },
         "maxReplicas": {
-          "type": "integer"
+          "type": "integer",
+          "default": 100
         },
         "targetCPUUtilizationPercentage": {
-          "type": "integer"
+          "type": "integer",
+          "default": 80
         },
         "targetMemoryUtilizationPercentage": {
-          "type": "integer"
+          "type": "integer",
+          "default": 80
         }
       },
-      "title": "Autoscaling",
-      "default": {
-        "enabled": false,
-        "minReplicas": 1,
-        "maxReplicas": 100,
-        "targetCPUUtilizationPercentage": 80,
-        "targetMemoryUtilizationPercentage": 80
-      }
+      "title": "Autoscaling"
     },
     "Image": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "repository": {
-          "type": "string"
+          "type": "string",
+          "default": "ghcr.io/zazuko/trifid"
         },
         "pullPolicy": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ],
+          "default": "IfNotPresent"
         },
         "tag": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         }
       },
-      "title": "Image",
-      "default": {
-        "repository": "ghcr.io/zazuko/trifid",
-        "pullPolicy": "IfNotPresent",
-        "tag": ""
-      }
+      "title": "Image"
     },
     "ExtraEnv": {
       "type": "array",
@@ -284,10 +302,12 @@
       "additionalProperties": false,
       "properties": {
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "className": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         "annotations": {
           "$ref": "#/definitions/Annotations"
@@ -296,21 +316,16 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Host"
-          }
+          },
+          "default": []
         },
         "tls": {
           "type": "array",
-          "items": {}
+          "items": {},
+          "default": []
         }
       },
-      "title": "Ingress",
-      "default": {
-        "enabled": false,
-        "className": "",
-        "annotations": {},
-        "hosts": [],
-        "tls": []
-      }
+      "title": "Ingress"
     },
     "Host": {
       "type": "object",
@@ -333,7 +348,8 @@
       "additionalProperties": false,
       "properties": {
         "path": {
-          "type": "string"
+          "type": "string",
+          "default": "/"
         },
         "pathType": {
           "type": "string",
@@ -341,14 +357,11 @@
             "Exact",
             "ImplementationSpecific",
             "Prefix"
-          ]
+          ],
+          "default": "ImplementationSpecific"
         }
       },
-      "title": "Path",
-      "default": {
-        "path": "/",
-        "pathType": "ImplementationSpecific"
-      }
+      "title": "Path"
     },
     "Probe": {
       "type": "object",
@@ -363,32 +376,6 @@
     "Resources": {
       "type": "object",
       "additionalProperties": true,
-      "properties": {
-        "limits": {
-          "type": "object",
-          "additionalProperties": true,
-          "properties": {
-            "cpu": {
-              "type": "string"
-            },
-            "memory": {
-              "type": "string"
-            }
-          }
-        },
-        "requests": {
-          "type": "object",
-          "additionalProperties": true,
-          "properties": {
-            "cpu": {
-              "type": "string"
-            },
-            "memory": {
-              "type": "string"
-            }
-          }
-        }
-      },
       "title": "Resources",
       "default": {}
     },
@@ -397,62 +384,55 @@
       "additionalProperties": true,
       "properties": {
         "path": {
-          "type": "string"
+          "type": "string",
+          "default": "/healthz"
         },
         "port": {
-          "type": "string"
+          "type": "string",
+          "default": "http"
         }
       },
       "title": "HTTPGet",
-      "description": "HTTPGet describes an HTTP Get request used to perform readiness or liveness checks.",
-      "default": {
-        "path": "/healthz",
-        "port": "http"
-      }
+      "description": "HTTPGet describes an HTTP Get request used to perform readiness or liveness checks."
     },
     "Service": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "type": {
-          "type": "string"
+          "type": "string",
+          "default": "ClusterIP"
         },
         "port": {
-          "type": "integer"
+          "type": "integer",
+          "default": 8080
         }
       },
       "title": "Service",
-      "description": "Service configuration",
-      "default": {
-        "type": "ClusterIP",
-        "port": 8080
-      }
+      "description": "Service configuration"
     },
     "ServiceAccount": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "create": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "automount": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         },
         "annotations": {
           "$ref": "#/definitions/Annotations"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         }
       },
       "title": "ServiceAccount",
-      "description": "ServiceAccount configuration",
-      "default": {
-        "create": false,
-        "automount": true,
-        "annotations": {},
-        "name": ""
-      }
+      "description": "ServiceAccount configuration"
     },
     "ReplicaCount": {
       "type": "integer",
