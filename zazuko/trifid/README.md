@@ -41,21 +41,27 @@ helm install trifid zazuko/trifid
 | nodeSelector | object | `{}` | nodeSelector to use |
 | podAnnotations | object | `{}` | podAnnotations to use |
 | podLabels | object | `{}` | podLabels to use |
-| podSecurityContext | object | `{}` | podSecurityContext to use |
+| podSecurityContext.fsGroup | int | `1000` | fsGroup is the group ID to run the container as |
+| podSecurityContext.runAsGroup | int | `1000` | runAsGroup is the group ID to run the container as |
+| podSecurityContext.runAsNonRoot | bool | `true` | runAsNonRoot tells if the container should run as a non-root user |
+| podSecurityContext.runAsUser | int | `1000` | runAsUser is the user ID to run the container as |
 | readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"}}` | readinessProbe is a health check to determine if the container is ready to serve traffic |
 | replicaCount | int | `1` | replicaCount is the number of replicas to deploy |
 | resources | object | `{}` | resources to request for the pod |
+| securityContext.allowPrivilegeEscalation | bool | `false` | allowPrivilegeEscalation tells if the container can request to allow privilege escalation |
 | securityContext.capabilities | object | `{}` | capabilities to add/drop |
+| securityContext.privileged | bool | `false` | privileged tells if the container is privileged |
 | securityContext.readOnlyRootFilesystem | bool | `true` | readOnlyRootFilesystem tells if the container should have a read-only root filesystem |
 | securityContext.runAsNonRoot | bool | `true` | runAsNonRoot tells if the container should run as a non-root user |
 | securityContext.runAsUser | int | `1000` | runAsUser is the user ID to run the container as |
+| securityContext.seLinuxOptions | object | `{}` | seLinuxOptions to add |
 | service.port | int | `8080` | port is the port the service will listen on |
 | service.type | string | `"ClusterIP"` | type is the type of service to create |
 | serviceAccount.annotations | object | `{}` | annotations to add to the service account |
 | serviceAccount.automount | bool | `true` | automount tells if the service account should be automounted |
 | serviceAccount.create | bool | `false` | create tells if a service account should be created |
 | serviceAccount.name | string | `""` | name is the name of the service account to use |
-| sparql.endpoint | string | `"http://example.com/query"` | endpoint is the URL of the SPARQL endpoint (required) |
+| sparql.endpoint | string | `"https://example.com/query"` | endpoint is the URL of the SPARQL endpoint (required) |
 | sparql.password | string | `""` | password for the SPARQL endpoint |
 | sparql.username | string | `""` | username for the SPARQL endpoint |
 | tolerations | list | `[]` | tolerations to use |
