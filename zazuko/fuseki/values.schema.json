@@ -27,9 +27,6 @@
           },
           "title": "UpdateStrategy"
         },
-        "dataset": {
-          "$ref": "#/definitions/Dataset"
-        },
         "replicaCount": {
           "$ref": "#/definitions/ReplicaCount"
         },
@@ -166,17 +163,6 @@
         }
       },
       "title": "Config"
-    },
-    "Dataset": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "baseUrl": {
-          "type": "string",
-          "default": ""
-        }
-      },
-      "title": "Dataset"
     },
     "Annotations": {
       "type": "object",
