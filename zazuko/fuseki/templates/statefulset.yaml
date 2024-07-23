@@ -1,5 +1,9 @@
+{{/*
+Define some common variables
+*/}}
+{{- $configValues := .Values.config | default dict -}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "fuseki.fullname" . }}
   labels:
@@ -7,6 +11,10 @@ metadata:
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  serviceName: {{ include "fuseki.fullname" . }}-headless
+  {{- if .Values.updateStrategy }}
+  updateStrategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
   {{- end }}
   selector:
     matchLabels:
@@ -46,13 +54,45 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
+          {{- if or .Values.storage.enabled .Values.volumes }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
+            {{- if .Values.storage.enabled }}
+            - name: {{ include "fuseki.fullname" . }}
+              mountPath: {{ .Values.storage.mountPath | quote }}
+            {{- end }}
+            {{- with .Values.volumeMounts }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
           {{- end }}
-      {{- with .Values.volumes }}
+          env:
+            {{- if $configValues.javaOpts }}
+            - name: JAVA_OPTS
+              value: {{ $configValues.javaOpts | quote }}
+            {{- end }}
+            {{- if $configValues.javaOpts }}
+            - name: DISABLE_OTEL
+              value: {{ $configValues.disableOtel | quote }}
+            {{- end }}
+            {{- if $configValues.adminPassword }}
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "fuseki.fullname" . }}
+                  key: adminPassword
+            {{- end }}
+            {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
+      {{- if or .Values.storage.enabled .Values.volumes }}
       volumes:
-        {{- toYaml . | nindent 8 }}
+        {{- if .Values.storage.enabled }}
+        - name: {{ include "fuseki.fullname" . }}
+          persistentVolumeClaim:
+            claimName: {{ include "fuseki.fullname" . }}
+        {{- end }}
+        {{- with .Values.volumes }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

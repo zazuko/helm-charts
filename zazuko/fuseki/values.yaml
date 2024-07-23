@@ -1,5 +1,40 @@
+# Storage configuration (for persistent storage)
+storage:
+  # -- enabled tells if the storage should be enabled
+  enabled: true
+  # -- size is the size of the storage to use
+  size: 10Gi
+  # -- storageClass is the storage class to use
+  storageClass: ""
+  # -- accessMode is the access mode to use
+  accessMode: ReadWriteOnce
+  # -- existingClaim is the name of an existing PVC to use
+  existingClaim: ""
+  # -- mountPath is the path to mount the storage
+  mountPath: /fuseki/databases/ds/
+
+# Configuration
+config:
+  # -- adminPassword is the password for the admin user
+  adminPassword: admin
+  # -- javaOpts is the Java options to use
+  javaOpts: "-Xmx2048m -Xms2048m"
+  # -- disableOtel tells if OpenTelemetry should be disabled
+  disableOtel: true
+
+# -- extraEnv is a list of extra environment variables to set
+extraEnv:
+  []
+  # - name: MY_ENV_VAR
+  #   value: my-value
+
 # -- replicaCount is the number of replicas to deploy
 replicaCount: 1
+
+# Update strategy configuration
+updateStrategy:
+  # -- type is the type of update strategy to use
+  type: RollingUpdate
 
 # Information about the Fuseki Docker image to use.
 # In case you want to use a custom image, you can set the repository and tag here.
@@ -58,7 +93,7 @@ securityContext:
   # -- runAsUser is the user ID to run the container as
   runAsUser: 1000
   # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   # -- seLinuxOptions to add
   seLinuxOptions: {}
 
