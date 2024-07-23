@@ -119,10 +119,11 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   # -- hosts is the list of hostnames to be exposed
   hosts:
-    - host: fuseki-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+    []
+    # - host: fuseki-example.local
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
   # -- tls is the list of TLS configuration
   tls: []
   #  - secretName: fuseki-example-tls
