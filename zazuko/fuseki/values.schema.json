@@ -333,10 +333,21 @@
         },
         "className": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
         },
         "annotations": {
-          "$ref": "#/definitions/Annotations"
+          "$ref": "#/definitions/Annotations",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": {
+              "acme.cert-manager.io/http01-ingress-class": "{{k8s.ingressClassName}}",
+              "cert-manager.io/cluster-issuer": "{{k8s.certManagerClusterIssuer}}"
+            }
+          }
         },
         "hosts": {
           "type": "array",
@@ -362,7 +373,18 @@
         "tls": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": [
+              {
+                "hosts": [
+                  "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+                ],
+                "secretName": "{{project.id}}-{{k8s.randomSubdomain}}-tls"
+              }
+            ]
+          }
         }
       },
       "title": "Ingress"
