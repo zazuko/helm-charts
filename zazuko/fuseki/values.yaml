@@ -1,42 +1,52 @@
 # yaml-language-server: $schema=values.schema.json
 
-# Information about the SPARQL endpoint
-sparql:
-  # -- endpoint is the URL of the SPARQL endpoint (required)
-  endpoint: "https://example.com/query"
-  # -- username for the SPARQL endpoint
-  username: ""
-  # -- password for the SPARQL endpoint
-  password: ""
+# Storage configuration (for persistent storage)
+storage:
+  # -- enabled tells if the storage should be enabled
+  enabled: true
+  # -- size is the size of the storage to use
+  size: 10Gi
+  # -- storageClass is the storage class to use
+  storageClass: ""
+  # -- accessMode is the access mode to use
+  accessMode: ReadWriteOnce
+  # -- existingClaim is the name of an existing PVC to use
+  existingClaim: ""
+  # -- mountPath is the path to mount the storage
+  mountPath: /fuseki/databases/ds/
 
-# Changes to the Trifid configuration
+# Configuration
 config:
-  # -- file is the path to the Trifid configuration file
-  file: ""
-
-# Set the base URL for the dataset, to allow some rewriting features
-dataset:
-  # -- baseUrl is the base URL for the dataset
-  baseUrl: ""
-
-# -- replicaCount is the number of replicas to deploy
-replicaCount: 1
-
-# Information about the Trifid Docker image to use.
-# In case you want to use a custom image, you can set the repository and tag here.
-image:
-  # -- repository is the Docker image to use
-  repository: ghcr.io/zazuko/trifid
-  # -- pullPolicy is the policy to use when pulling the image
-  pullPolicy: IfNotPresent
-  # -- tag is used to overrides the image tag whose default is the chart appVersion
-  tag: ""
+  # -- adminPassword is the password for the admin user
+  adminPassword: admin
+  # -- javaOpts is the Java options to use
+  javaOpts: "-Xmx2048m -Xms2048m"
+  # -- disableOtel tells if OpenTelemetry should be disabled
+  disableOtel: true
 
 # -- extraEnv is a list of extra environment variables to set
 extraEnv:
   []
   # - name: MY_ENV_VAR
   #   value: my-value
+
+# -- replicaCount is the number of replicas to deploy
+replicaCount: 1
+
+# Update strategy configuration
+updateStrategy:
+  # -- type is the type of update strategy to use
+  type: RollingUpdate
+
+# Information about the Fuseki Docker image to use.
+# In case you want to use a custom image, you can set the repository and tag here.
+image:
+  # -- repository is the Docker image to use
+  repository: ghcr.io/zazuko/fuseki-geosparql
+  # -- pullPolicy is the policy to use when pulling the image
+  pullPolicy: IfNotPresent
+  # -- tag is used to overrides the image tag whose default is the chart appVersion
+  tag: ""
 
 # -- imagePullSecrets used to pull the Docker image
 imagePullSecrets: []
@@ -85,7 +95,7 @@ securityContext:
   # -- runAsUser is the user ID to run the container as
   runAsUser: 1000
   # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   # -- seLinuxOptions to add
   seLinuxOptions: {}
 
@@ -94,7 +104,7 @@ service:
   # -- type is the type of service to create
   type: ClusterIP
   # -- port is the port the service will listen on
-  port: 8080
+  port: 3030
 
 # Ingress configuration
 ingress:
@@ -110,15 +120,15 @@ ingress:
   # -- hosts is the list of hostnames to be exposed
   hosts:
     []
-    # - host: trifid-example.local
+    # - host: fuseki-example.local
     #   paths:
     #     - path: /
     #       pathType: ImplementationSpecific
   # -- tls is the list of TLS configuration
   tls: []
-  #  - secretName: trifid-example-tls
+  #  - secretName: fuseki-example-tls
   #    hosts:
-  #      - trifid-example.local
+  #      - fuseki-example.local
 
 # -- resources to request for the pod
 resources:
@@ -137,13 +147,13 @@ resources:
 # -- livenessProbe is a health check to determine if the container is still running
 livenessProbe:
   httpGet:
-    path: /healthz
+    path: "/$/ping"
     port: http
 
 # -- readinessProbe is a health check to determine if the container is ready to serve traffic
 readinessProbe:
   httpGet:
-    path: /healthz
+    path: "/$/ping"
     port: http
 
 # Configure autoscaling

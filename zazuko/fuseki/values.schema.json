@@ -1,0 +1,499 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HelmValues",
+  "definitions": {
+    "HelmValues": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "storage": {
+          "$ref": "#/definitions/Storage"
+        },
+        "config": {
+          "$ref": "#/definitions/Config"
+        },
+        "updateStrategy": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "RollingUpdate",
+                "Recreate"
+              ],
+              "default": "RollingUpdate"
+            }
+          },
+          "title": "UpdateStrategy"
+        },
+        "dataset": {
+          "$ref": "#/definitions/Dataset"
+        },
+        "replicaCount": {
+          "$ref": "#/definitions/ReplicaCount"
+        },
+        "image": {
+          "$ref": "#/definitions/Image"
+        },
+        "extraEnv": {
+          "$ref": "#/definitions/ExtraEnv"
+        },
+        "imagePullSecrets": {
+          "type": "array",
+          "items": {},
+          "default": []
+        },
+        "nameOverride": {
+          "type": "string",
+          "default": ""
+        },
+        "fullnameOverride": {
+          "type": "string",
+          "default": ""
+        },
+        "serviceAccount": {
+          "$ref": "#/definitions/ServiceAccount"
+        },
+        "podAnnotations": {
+          "$ref": "#/definitions/Annotations"
+        },
+        "podLabels": {
+          "$ref": "#/definitions/Labels"
+        },
+        "podSecurityContext": {
+          "$ref": "#/definitions/PodSecurityContext"
+        },
+        "securityContext": {
+          "$ref": "#/definitions/SecurityContext"
+        },
+        "service": {
+          "$ref": "#/definitions/Service"
+        },
+        "ingress": {
+          "$ref": "#/definitions/Ingress"
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "livenessProbe": {
+          "$ref": "#/definitions/Probe"
+        },
+        "readinessProbe": {
+          "$ref": "#/definitions/Probe"
+        },
+        "autoscaling": {
+          "$ref": "#/definitions/Autoscaling"
+        },
+        "volumes": {
+          "type": "array",
+          "items": {},
+          "default": []
+        },
+        "volumeMounts": {
+          "type": "array",
+          "items": {},
+          "default": []
+        },
+        "nodeSelector": {
+          "$ref": "#/definitions/NodeSelector"
+        },
+        "tolerations": {
+          "type": "array",
+          "items": {},
+          "default": []
+        },
+        "affinity": {
+          "$ref": "#/definitions/Affinity"
+        }
+      },
+      "title": "Helm Values"
+    },
+    "Storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "size": {
+          "type": "string",
+          "default": "10Gi"
+        },
+        "storageClass": {
+          "type": "string",
+          "default": ""
+        },
+        "accessMode": {
+          "type": "string",
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany"
+          ],
+          "default": "ReadWriteOnce"
+        },
+        "existingClaim": {
+          "type": "string",
+          "default": ""
+        },
+        "mountPath": {
+          "type": "string",
+          "default": "/fuseki/databases/ds/"
+        }
+      },
+      "title": "Storage"
+    },
+    "Config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adminPassword": {
+          "type": "string",
+          "default": "admin",
+          "x-onyxia": {
+            "overwriteDefaultWith": "{{project.password}}"
+          }
+        },
+        "javaOpts": {
+          "type": "string",
+          "default": "-Xmx2048m -Xms2048m"
+        },
+        "disableOtel": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "title": "Config"
+    },
+    "Dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "title": "Dataset"
+    },
+    "Annotations": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Annotations",
+      "default": {}
+    },
+    "Labels": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Labels",
+      "default": {}
+    },
+    "PodSecurityContext": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "fsGroup": {
+          "type": "integer",
+          "default": 1000
+        },
+        "runAsGroup": {
+          "type": "integer",
+          "default": 1000
+        },
+        "runAsNonRoot": {
+          "type": "boolean",
+          "default": true
+        },
+        "runAsUser": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "title": "PodSecurityContext"
+    },
+    "SecurityContext": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "type": "boolean",
+          "default": false
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": true,
+          "default": {}
+        },
+        "privileged": {
+          "type": "boolean",
+          "default": false
+        },
+        "readOnlyRootFilesystem": {
+          "type": "boolean",
+          "default": false
+        },
+        "runAsNonRoot": {
+          "type": "boolean",
+          "default": true
+        },
+        "runAsUser": {
+          "type": "integer",
+          "default": 1000
+        },
+        "seLinuxOptions": {
+          "type": "object",
+          "additionalProperties": true,
+          "default": {}
+        }
+      },
+      "title": "SecurityContext"
+    },
+    "Affinity": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Affinity",
+      "default": {}
+    },
+    "NodeSelector": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "NodeSelector",
+      "default": {}
+    },
+    "Autoscaling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "minReplicas": {
+          "type": "integer",
+          "default": 1
+        },
+        "maxReplicas": {
+          "type": "integer",
+          "default": 100
+        },
+        "targetCPUUtilizationPercentage": {
+          "type": "integer",
+          "default": 80
+        },
+        "targetMemoryUtilizationPercentage": {
+          "type": "integer",
+          "default": 80
+        }
+      },
+      "title": "Autoscaling"
+    },
+    "Image": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "type": "string",
+          "default": "ghcr.io/zazuko/fuseki-geosparql"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ],
+          "default": "IfNotPresent"
+        },
+        "tag": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "title": "Image"
+    },
+    "ExtraEnv": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "title": "ExtraEnv",
+      "default": []
+    },
+    "Ingress": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": true
+          }
+        },
+        "className": {
+          "type": "string",
+          "default": ""
+        },
+        "annotations": {
+          "$ref": "#/definitions/Annotations"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Host"
+          },
+          "default": [],
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": [
+              {
+                "host": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}",
+                "paths": [
+                  {
+                    "path": "/",
+                    "pathType": "ImplementationSpecific"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "tls": {
+          "type": "array",
+          "items": {},
+          "default": []
+        }
+      },
+      "title": "Ingress"
+    },
+    "Host": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Path"
+          }
+        }
+      },
+      "title": "Host"
+    },
+    "Path": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "default": "/"
+        },
+        "pathType": {
+          "type": "string",
+          "enum": [
+            "Exact",
+            "ImplementationSpecific",
+            "Prefix"
+          ],
+          "default": "ImplementationSpecific"
+        }
+      },
+      "title": "Path"
+    },
+    "Probe": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "httpGet": {
+          "$ref": "#/definitions/HTTPGet"
+        }
+      },
+      "title": "Probe"
+    },
+    "Resources": {
+      "type": "object",
+      "additionalProperties": true,
+      "title": "Resources",
+      "default": {}
+    },
+    "HTTPGet": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "path": {
+          "type": "string",
+          "default": "/$/ping"
+        },
+        "port": {
+          "type": "string",
+          "default": "http"
+        }
+      },
+      "title": "HTTPGet",
+      "description": "HTTPGet describes an HTTP Get request used to perform readiness or liveness checks."
+    },
+    "Service": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "default": 8080
+        }
+      },
+      "title": "Service",
+      "description": "Service configuration"
+    },
+    "ServiceAccount": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "default": false
+        },
+        "automount": {
+          "type": "boolean",
+          "default": true
+        },
+        "annotations": {
+          "$ref": "#/definitions/Annotations"
+        },
+        "name": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "title": "ServiceAccount",
+      "description": "ServiceAccount configuration"
+    },
+    "ReplicaCount": {
+      "type": "integer",
+      "title": "ReplicaCount",
+      "description": "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
+      "default": 1,
+      "minimum": 0
+    }
+  }
+}

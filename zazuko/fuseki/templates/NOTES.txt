@@ -1,0 +1,8 @@
+Thanks for using our Helm Chart!
+
+To report any issue:
+- about the Helm Chart: https://github.com/zazuko/helm-charts
+- about our custom Fuseki Docker image: https://github.com/zazuko/fuseki-geosparql
+- about Fuseki itself: https://github.com/apache/jena
+
+Fuseki documentation: https://jena.apache.org/documentation/fuseki2/

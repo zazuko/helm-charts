@@ -1,0 +1,27 @@
+{{/*
+Define some common variables
+*/}}
+{{- $storageValues := .Values.storage | default dict -}}
+{{- if $storageValues.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "fuseki.fullname" . }}
+  labels:
+    {{- include "fuseki.labels" . | nindent 4 }}
+spec:
+  resources:
+    requests:
+      storage: {{ $storageValues.size | quote }}
+  accessModes:
+    - {{ $storageValues.accessMode | quote }}
+  {{- if $storageValues.storageClass }}
+  storageClassName: {{ $storageValues.storageClass | quote }}
+  {{- end }}
+  {{- with $storageValues.annotations }}
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
+  {{- if $storageValues.existingClaim }}
+  volumeName: {{ $storageValues.existingClaim | quote }}
+  {{- end }}
+{{- end }}
