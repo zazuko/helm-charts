@@ -445,7 +445,7 @@
         },
         "port": {
           "type": "integer",
-          "default": 8080
+          "default": 3030
         }
       },
       "title": "Service",
