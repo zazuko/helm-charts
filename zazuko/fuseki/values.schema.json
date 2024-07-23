@@ -151,7 +151,10 @@
       "properties": {
         "adminPassword": {
           "type": "string",
-          "default": "admin"
+          "default": "admin",
+          "x-onyxia": {
+            "overwriteDefaultWith": "{{project.password}}"
+          }
         },
         "javaOpts": {
           "type": "string",
@@ -336,7 +339,11 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": true
+          }
         },
         "className": {
           "type": "string",
@@ -350,7 +357,21 @@
           "items": {
             "$ref": "#/definitions/Host"
           },
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": [
+              {
+                "host": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}",
+                "paths": [
+                  {
+                    "path": "/",
+                    "pathType": "ImplementationSpecific"
+                  }
+                ]
+              }
+            ]
+          }
         },
         "tls": {
           "type": "array",
