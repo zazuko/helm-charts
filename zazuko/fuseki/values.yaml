@@ -1,5 +1,14 @@
 # yaml-language-server: $schema=values.schema.json
 
+# Configuration
+config:
+  # -- adminPassword is the password for the admin user
+  adminPassword: admin
+  # -- javaOpts is the Java options to use
+  javaOpts: "-Xmx2048m -Xms2048m"
+  # -- disableOtel tells if OpenTelemetry should be disabled
+  disableOtel: true
+
 # Storage configuration (for persistent storage)
 storage:
   # -- enabled tells if the storage should be enabled
@@ -14,15 +23,6 @@ storage:
   existingClaim: ""
   # -- mountPath is the path to mount the storage
   mountPath: /fuseki/databases/ds/
-
-# Configuration
-config:
-  # -- adminPassword is the password for the admin user
-  adminPassword: admin
-  # -- javaOpts is the Java options to use
-  javaOpts: "-Xmx2048m -Xms2048m"
-  # -- disableOtel tells if OpenTelemetry should be disabled
-  disableOtel: true
 
 # -- extraEnv is a list of extra environment variables to set
 extraEnv:

@@ -6,11 +6,11 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "storage": {
-          "$ref": "#/definitions/Storage"
-        },
         "config": {
           "$ref": "#/definitions/Config"
+        },
+        "storage": {
+          "$ref": "#/definitions/Storage"
         },
         "updateStrategy": {
           "type": "object",
@@ -25,83 +25,146 @@
               "default": "RollingUpdate"
             }
           },
-          "title": "UpdateStrategy"
+          "title": "UpdateStrategy",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "replicaCount": {
-          "$ref": "#/definitions/ReplicaCount"
+          "$ref": "#/definitions/ReplicaCount",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "image": {
           "$ref": "#/definitions/Image"
         },
         "extraEnv": {
-          "$ref": "#/definitions/ExtraEnv"
+          "$ref": "#/definitions/ExtraEnv",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "imagePullSecrets": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "nameOverride": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "fullnameOverride": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "serviceAccount": {
-          "$ref": "#/definitions/ServiceAccount"
+          "$ref": "#/definitions/ServiceAccount",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "podAnnotations": {
-          "$ref": "#/definitions/Annotations"
+          "$ref": "#/definitions/Annotations",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "podLabels": {
-          "$ref": "#/definitions/Labels"
+          "$ref": "#/definitions/Labels",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "podSecurityContext": {
-          "$ref": "#/definitions/PodSecurityContext"
+          "$ref": "#/definitions/PodSecurityContext",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "securityContext": {
-          "$ref": "#/definitions/SecurityContext"
+          "$ref": "#/definitions/SecurityContext",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "service": {
-          "$ref": "#/definitions/Service"
+          "$ref": "#/definitions/Service",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "ingress": {
           "$ref": "#/definitions/Ingress"
         },
         "resources": {
-          "$ref": "#/definitions/Resources"
+          "$ref": "#/definitions/Resources",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "livenessProbe": {
-          "$ref": "#/definitions/Probe"
+          "$ref": "#/definitions/Probe",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "readinessProbe": {
-          "$ref": "#/definitions/Probe"
+          "$ref": "#/definitions/Probe",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "autoscaling": {
-          "$ref": "#/definitions/Autoscaling"
+          "$ref": "#/definitions/Autoscaling",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "volumes": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "volumeMounts": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "nodeSelector": {
-          "$ref": "#/definitions/NodeSelector"
+          "$ref": "#/definitions/NodeSelector",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "tolerations": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "affinity": {
-          "$ref": "#/definitions/Affinity"
+          "$ref": "#/definitions/Affinity",
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "Helm Values"
@@ -471,7 +534,10 @@
         }
       },
       "title": "Service",
-      "description": "Service configuration"
+      "description": "Service configuration",
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "ServiceAccount": {
       "type": "object",
