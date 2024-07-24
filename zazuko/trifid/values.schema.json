@@ -16,7 +16,10 @@
           "$ref": "#/definitions/Dataset"
         },
         "replicaCount": {
-          "$ref": "#/definitions/ReplicaCount"
+          "$ref": "#/definitions/ReplicaCount",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "image": {
           "$ref": "#/definitions/Image"
@@ -27,69 +30,123 @@
         "imagePullSecrets": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "nameOverride": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "fullnameOverride": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "serviceAccount": {
-          "$ref": "#/definitions/ServiceAccount"
+          "$ref": "#/definitions/ServiceAccount",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "podAnnotations": {
-          "$ref": "#/definitions/Annotations"
+          "$ref": "#/definitions/Annotations",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "podLabels": {
-          "$ref": "#/definitions/Labels"
+          "$ref": "#/definitions/Labels",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "podSecurityContext": {
-          "$ref": "#/definitions/PodSecurityContext"
+          "$ref": "#/definitions/PodSecurityContext",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "securityContext": {
-          "$ref": "#/definitions/SecurityContext"
+          "$ref": "#/definitions/SecurityContext",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "service": {
-          "$ref": "#/definitions/Service"
+          "$ref": "#/definitions/Service",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "ingress": {
           "$ref": "#/definitions/Ingress"
         },
         "resources": {
-          "$ref": "#/definitions/Resources"
+          "$ref": "#/definitions/Resources",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "livenessProbe": {
-          "$ref": "#/definitions/Probe"
+          "$ref": "#/definitions/Probe",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "readinessProbe": {
-          "$ref": "#/definitions/Probe"
+          "$ref": "#/definitions/Probe",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "autoscaling": {
-          "$ref": "#/definitions/Autoscaling"
+          "$ref": "#/definitions/Autoscaling",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "volumes": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "volumeMounts": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "nodeSelector": {
-          "$ref": "#/definitions/NodeSelector"
+          "$ref": "#/definitions/NodeSelector",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "tolerations": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "affinity": {
-          "$ref": "#/definitions/Affinity"
+          "$ref": "#/definitions/Affinity",
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "Helm Values",
@@ -303,26 +360,66 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": true
+          }
         },
         "className": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": "{{k8s.ingressClassName}}"
+          }
         },
         "annotations": {
-          "$ref": "#/definitions/Annotations"
+          "$ref": "#/definitions/Annotations",
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": {
+              "acme.cert-manager.io/http01-ingress-class": "{{k8s.ingressClassName}}",
+              "cert-manager.io/cluster-issuer": "{{k8s.certManagerClusterIssuer}}"
+            }
+          }
         },
         "hosts": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Host"
           },
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": [
+              {
+                "host": "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}",
+                "paths": [
+                  {
+                    "path": "/",
+                    "pathType": "ImplementationSpecific"
+                  }
+                ]
+              }
+            ]
+          }
         },
         "tls": {
           "type": "array",
           "items": {},
-          "default": []
+          "default": [],
+          "x-onyxia": {
+            "hidden": true,
+            "overwriteDefaultWith": [
+              {
+                "hosts": [
+                  "{{project.id}}-{{k8s.randomSubdomain}}.{{k8s.domain}}"
+                ],
+                "secretName": "{{project.id}}-{{k8s.randomSubdomain}}-tls"
+              }
+            ]
+          }
         }
       },
       "title": "Ingress"
