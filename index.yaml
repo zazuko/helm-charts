@@ -15,6 +15,30 @@ entries:
           url: https://github.com/zazuko/helm-charts/issues
     apiVersion: v2
     appVersion: v3.3.1
+    created: "2024-07-24T07:12:13.18731834Z"
+    description: Fuseki with GeoSPARQL support
+    digest: 8d633cb27082969e5ada63120e85234bd5514449895a150de28841eaed89c2e0
+    home: https://github.com/zazuko/fuseki-geosparql
+    icon: https://charts.zazuko.com/icons/logo-apache-jena.svg
+    name: fuseki
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/fuseki-0.0.3/fuseki-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/fuseki
+        - name: Apache Jena Fuseki
+          url: https://jena.apache.org/documentation/fuseki2/
+        - name: GitHub Repository
+          url: https://github.com/zazuko/fuseki-geosparql
+        - name: Zazuko
+          url: https://www.zazuko.com/
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
+    appVersion: v3.3.1
     created: "2024-07-23T17:55:09.580427284Z"
     description: Fuseki with GeoSPARQL support
     digest: ad486478a53892ce407c9a00c95c3de0a25c4cfd6aebd3e6e6fdcbe1b7bedc28
@@ -50,6 +74,29 @@ entries:
     - https://github.com/zazuko/helm-charts/releases/download/fuseki-0.0.1/fuseki-0.0.1.tgz
     version: 0.0.1
   trifid:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/trifid
+        - name: Zazuko
+          url: https://www.zazuko.com/
+        - name: Trifid
+          url: https://github.com/zazuko/trifid
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
+    appVersion: v5.0.6
+    created: "2024-07-24T07:12:13.290835385Z"
+    description: Lightweight Linked Data Server and Proxy
+    digest: f49d783fb4173a56bebe07c9644c05bd9b1340c7ce90bb55d3d535ce5540375f
+    home: https://github.com/zazuko/trifid
+    icon: https://charts.zazuko.com/icons/logo-zazuko.svg
+    name: trifid
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.5/trifid-0.1.5.tgz
+    version: 0.1.5
   - annotations:
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -153,4 +200,4 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-23T17:55:09.580444676Z"
+generated: "2024-07-24T07:12:13.290861884Z"
