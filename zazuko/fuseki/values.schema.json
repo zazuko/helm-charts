@@ -31,19 +31,13 @@
           }
         },
         "replicaCount": {
-          "$ref": "#/definitions/ReplicaCount",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/ReplicaCount"
         },
         "image": {
           "$ref": "#/definitions/Image"
         },
         "extraEnv": {
-          "$ref": "#/definitions/ExtraEnv",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/ExtraEnv"
         },
         "imagePullSecrets": {
           "type": "array",
@@ -68,67 +62,37 @@
           }
         },
         "serviceAccount": {
-          "$ref": "#/definitions/ServiceAccount",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/ServiceAccount"
         },
         "podAnnotations": {
-          "$ref": "#/definitions/Annotations",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Annotations"
         },
         "podLabels": {
-          "$ref": "#/definitions/Labels",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Labels"
         },
         "podSecurityContext": {
-          "$ref": "#/definitions/PodSecurityContext",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/PodSecurityContext"
         },
         "securityContext": {
-          "$ref": "#/definitions/SecurityContext",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/SecurityContext"
         },
         "service": {
-          "$ref": "#/definitions/Service",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Service"
         },
         "ingress": {
           "$ref": "#/definitions/Ingress"
         },
         "resources": {
-          "$ref": "#/definitions/Resources",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Resources"
         },
         "livenessProbe": {
-          "$ref": "#/definitions/Probe",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Probe"
         },
         "readinessProbe": {
-          "$ref": "#/definitions/Probe",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Probe"
         },
         "autoscaling": {
-          "$ref": "#/definitions/Autoscaling",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Autoscaling"
         },
         "volumes": {
           "type": "array",
@@ -147,10 +111,7 @@
           }
         },
         "nodeSelector": {
-          "$ref": "#/definitions/NodeSelector",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/NodeSelector"
         },
         "tolerations": {
           "type": "array",
@@ -161,10 +122,7 @@
           }
         },
         "affinity": {
-          "$ref": "#/definitions/Affinity",
-          "x-onyxia": {
-            "hidden": true
-          }
+          "$ref": "#/definitions/Affinity"
         }
       },
       "title": "Helm Values"
@@ -183,7 +141,10 @@
         },
         "storageClass": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "accessMode": {
           "type": "string",
@@ -196,7 +157,10 @@
         },
         "existingClaim": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "mountPath": {
           "type": "string",
@@ -222,7 +186,10 @@
         },
         "disableOtel": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "Config"
@@ -231,13 +198,19 @@
       "type": "object",
       "additionalProperties": true,
       "title": "Annotations",
-      "default": {}
+      "default": {},
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "Labels": {
       "type": "object",
       "additionalProperties": true,
       "title": "Labels",
-      "default": {}
+      "default": {},
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "PodSecurityContext": {
       "type": "object",
@@ -245,19 +218,31 @@
       "properties": {
         "fsGroup": {
           "type": "integer",
-          "default": 1000
+          "default": 1000,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "runAsGroup": {
           "type": "integer",
-          "default": 1000
+          "default": 1000,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "runAsNonRoot": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "runAsUser": {
           "type": "integer",
-          "default": 1000
+          "default": 1000,
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "PodSecurityContext"
@@ -268,33 +253,54 @@
       "properties": {
         "allowPrivilegeEscalation": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "capabilities": {
           "type": "object",
           "additionalProperties": true,
-          "default": {}
+          "default": {},
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "privileged": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "readOnlyRootFilesystem": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "runAsNonRoot": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "runAsUser": {
           "type": "integer",
-          "default": 1000
+          "default": 1000,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "seLinuxOptions": {
           "type": "object",
           "additionalProperties": true,
-          "default": {}
+          "default": {},
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "SecurityContext"
@@ -303,13 +309,19 @@
       "type": "object",
       "additionalProperties": true,
       "title": "Affinity",
-      "default": {}
+      "default": {},
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "NodeSelector": {
       "type": "object",
       "additionalProperties": true,
       "title": "NodeSelector",
-      "default": {}
+      "default": {},
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "Autoscaling": {
       "type": "object",
@@ -317,23 +329,38 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "minReplicas": {
           "type": "integer",
-          "default": 1
+          "default": 1,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "maxReplicas": {
           "type": "integer",
-          "default": 100
+          "default": 100,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "targetCPUUtilizationPercentage": {
           "type": "integer",
-          "default": 80
+          "default": 80,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "targetMemoryUtilizationPercentage": {
           "type": "integer",
-          "default": 80
+          "default": 80,
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "Autoscaling"
@@ -380,7 +407,10 @@
         ]
       },
       "title": "ExtraEnv",
-      "default": []
+      "default": [],
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "Ingress": {
       "type": "object",
@@ -502,7 +532,10 @@
       "type": "object",
       "additionalProperties": true,
       "title": "Resources",
-      "default": {}
+      "default": {},
+      "x-onyxia": {
+        "hidden": true
+      }
     },
     "HTTPGet": {
       "type": "object",
@@ -510,11 +543,17 @@
       "properties": {
         "path": {
           "type": "string",
-          "default": "/$/ping"
+          "default": "/$/ping",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "port": {
           "type": "string",
-          "default": "http"
+          "default": "http",
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "HTTPGet",
@@ -526,18 +565,21 @@
       "properties": {
         "type": {
           "type": "string",
-          "default": "ClusterIP"
+          "default": "ClusterIP",
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "port": {
           "type": "integer",
-          "default": 3030
+          "default": 3030,
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "Service",
-      "description": "Service configuration",
-      "x-onyxia": {
-        "hidden": true
-      }
+      "description": "Service configuration"
     },
     "ServiceAccount": {
       "type": "object",
@@ -545,18 +587,27 @@
       "properties": {
         "create": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "automount": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "x-onyxia": {
+            "hidden": true
+          }
         },
         "annotations": {
           "$ref": "#/definitions/Annotations"
         },
         "name": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "ServiceAccount",
@@ -567,7 +618,10 @@
       "title": "ReplicaCount",
       "description": "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
       "default": 1,
-      "minimum": 0
+      "minimum": 0,
+      "x-onyxia": {
+        "hidden": true
+      }
     }
   }
 }
