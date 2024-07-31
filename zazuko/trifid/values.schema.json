@@ -108,6 +108,25 @@
         },
         "affinity": {
           "$ref": "#/definitions/Affinity"
+        },
+        "global": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {},
+          "title": "Global Helm Values",
+          "description": "Global Helm Values are values that are passed to all charts in the same Helm release.",
+          "x-onyxia": {
+            "hidden": true
+          }
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "Enable this chart",
+          "description": "Enable or disable this chart, if used as a dependency",
+          "default": true,
+          "x-onyxia": {
+            "hidden": true
+          }
         }
       },
       "title": "Helm Values",
