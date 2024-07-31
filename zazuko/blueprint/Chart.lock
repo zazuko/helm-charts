@@ -1,0 +1,9 @@
+dependencies:
+- name: trifid
+  repository: https://charts.zazuko.com
+  version: 0.1.6
+- name: fuseki
+  repository: https://charts.zazuko.com
+  version: 0.0.4
+digest: sha256:74e2b8d12c4a072eeb7a8490f034feb67e36ae9fbc2e30c05c6afd6144213a38
+generated: "2024-07-31T17:44:12.63028+02:00"
