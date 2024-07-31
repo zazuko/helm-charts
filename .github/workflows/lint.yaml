@@ -19,6 +19,10 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Install Helm dependencies
+        run: |
+          helm dependency build zazuko/blueprint
+
       - name: Lint Helm Charts
         run: |
           helm lint zazuko/*

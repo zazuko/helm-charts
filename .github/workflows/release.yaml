@@ -26,6 +26,10 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v4
 
+      - name: Install Helm dependencies
+        run: |
+          helm dependency build zazuko/blueprint
+
       - name: Run helm-docs
         uses: losisin/helm-docs-github-action@v1.3.0
         with:
