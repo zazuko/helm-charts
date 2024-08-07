@@ -1,0 +1,48 @@
+apiVersion: v2
+name: blueprint
+description: Zazuko Blueprint is an enterprise knowledge graph frontend and browser, designed to make RDF Knowledge Graphs accessible and customizable for domain users
+home: https://github.com/zazuko/blueprint
+icon: https://charts.zazuko.com/icons/logo-blueprint.svg
+
+# A chart can be either an 'application' or a 'library' chart.
+#
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+#
+# Library charts provide useful utilities or functions for the chart developer. They're included as
+# a dependency of application charts to inject those utilities and functions into the rendering
+# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.0.1
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+# It is recommended to use it with quotes.
+appVersion: "v0.1.0"
+
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Chart Source
+      url: https://github.com/zazuko/helm-charts/tree/main/zazuko/blueprint
+    - name: GitHub Repository
+      url: https://github.com/zazuko/blueprint
+    - name: Zazuko
+      url: https://www.zazuko.com/
+    - name: support
+      url: https://github.com/zazuko/helm-charts/issues
+
+dependencies:
+  - name: trifid
+    version: 0.1.7
+    repository: "https://charts.zazuko.com"
+    condition: trifid.enabled
+  - name: fuseki
+    version: 0.0.5
+    repository: "https://charts.zazuko.com"
+    condition: fuseki.enabled

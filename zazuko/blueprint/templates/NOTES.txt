@@ -1,0 +1,5 @@
+Thanks for using our Helm Chart!
+
+To report any issue:
+- about the Helm Chart: https://github.com/zazuko/helm-charts
+- about Zazuko Blueprint itself: https://github.com/zazuko/blueprint
