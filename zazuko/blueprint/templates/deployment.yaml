@@ -50,6 +50,22 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          env:
+            - name: ENDPOINT_URL
+              value: {{ .Values.endpointUrl | quote }}
+            - name: SPARQL_CONSOLE_URL
+              value: {{ .Values.sparqlConsoleUrl | quote }}
+            - name: GRAPH_EXPLORER_URL
+              value: {{ .Values.graphExplorerUrl | quote }}
+            - name: FULL_TEXT_SEARCH_DIALECT
+              value: {{ .Values.fullTextSearchDialect | quote }}
+            {{- if .Values.fullTextSearchDialect }}
+            - name: NEPTUNE_FTS_ENDPOINT
+              value: {{ .Values.neptuneFtsEndpoint | quote }}
+            {{- end }}
+            {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

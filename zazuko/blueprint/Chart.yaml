@@ -41,6 +41,8 @@ dependencies:
   - name: trifid
     version: 0.1.7
     repository: "https://charts.zazuko.com"
+    condition: trifid.enabled
   - name: fuseki
     version: 0.0.5
     repository: "https://charts.zazuko.com"
+    condition: fuseki.enabled

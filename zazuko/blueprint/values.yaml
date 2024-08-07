@@ -1,69 +1,207 @@
+# Blueprint configuration
+
+## In case you want to use Trifid and Fuseki, you can enable them with `trifid.enabled` and `fuseki.enabled` set to `true`.
+## Replace `example.com` in the `endpointUrl`, `sparqlConsoleUrl` and `graphExplorerUrl` fields with the exposed URL of your Trifid instance (see `trifid.ingress` section).
+
+# -- endpointUrl is the SPARQL endpoint URL
+endpointUrl: http://example.com/query
+# -- sparqlConsoleUrl is the SPARQL console URL
+sparqlConsoleUrl: http://example.com/sparql/#query
+# -- graphExplorerUrl is the Graph Explorer URL
+graphExplorerUrl: http://example.com/graph-explorer/?resource
+# -- fullTextSearchDialect is the full text search dialect
+fullTextSearchDialect: fuseki
+# -- neptuneFtsEndpoint (in case fullTextSearchDialect is "neptune") is the Neptune FTS endpoint
+neptuneFtsEndpoint: ""
+
+# Trifid configuration
 trifid:
-  enabled: false
+  # -- enabled tells if a Trifid instance should be deployed
+  enabled: true
 
+  # Information about the SPARQL endpoint
+  sparql:
+    # -- endpoint is the URL of the SPARQL endpoint (required)
+    endpoint: "http://blueprint-fuseki:3030/query"
+    # -- username for the SPARQL endpoint
+    username: ""
+    # -- password for the SPARQL endpoint
+    password: ""
+
+  # Changes to the Trifid configuration
+  config:
+    # -- file is the path to the Trifid configuration file
+    file: ""
+
+  # Set the base URL for the dataset, to allow some rewriting features
+  dataset:
+    # -- baseUrl is the base URL for the dataset
+    baseUrl: ""
+
+  # Ingress configuration
+  ingress:
+    # -- enabled allows you to enable or disable the Ingress
+    enabled: true
+    # -- className is the ingress class to use
+    className: ""
+    # -- annotations to add to the Ingress
+    annotations:
+      {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    # -- hosts is the list of hostnames to be exposed
+    hosts:
+      []
+      # - host: trifid-example.local
+      #   paths:
+      #     - path: /
+      #       pathType: ImplementationSpecific
+    # -- tls is the list of TLS configuration
+    tls: []
+    #  - secretName: trifid-example-tls
+    #    hosts:
+    #      - trifid-example.local
+
+  # More fields can be added here, see the Trifid values.yaml for more options
+
+# Fuseki configuration
 fuseki:
-  enabled: false
+  # -- enabled tells if a Fuseki instance should be deployed
+  enabled: true
 
+  # Configuration
+  config:
+    # -- adminPassword is the password for the admin user
+    adminPassword: super-secret-password
+    # -- javaOpts is the Java options to use
+    javaOpts: "-Xmx2048m -Xms2048m"
+    # -- disableOtel tells if OpenTelemetry should be disabled
+    disableOtel: true
+
+  # Storage configuration (for persistent storage)
+  storage:
+    # -- enabled tells if the storage should be enabled
+    enabled: true
+    # -- size is the size of the storage to use
+    size: 10Gi
+    # -- storageClass is the storage class to use
+    storageClass: ""
+    # -- accessMode is the access mode to use
+    accessMode: ReadWriteOnce
+    # -- existingClaim is the name of an existing PVC to use
+    existingClaim: ""
+    # -- mountPath is the path to mount the storage
+    mountPath: /fuseki/databases/ds/
+
+  # -- fullnameOverride overrides the full name of the chart
+  ## Make sure that this is unique within the namespace
+  ## If you are using the embedded Trifid, you should also update the `trifid.sparql.endpoint` field
+  fullnameOverride: "blueprint-fuseki"
+
+  # More fields can be added here, see the Fuseki values.yaml for more options
+
+# -- replicaCount is the number of replicas to deploy
 replicaCount: 1
 
+# Information about the Blueprint Docker image to use.
+# In case you want to use a custom image, you can set the repository and tag here.
 image:
-  repository: nginx
+  # -- repository is the Docker image to use
+  repository: ghcr.io/zazuko/blueprint
+  # -- pullPolicy is the policy to use when pulling the image
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- tag is used to overrides the image tag whose default is the chart appVersion
   tag: ""
 
+# -- extraEnv is a list of extra environment variables to set
+extraEnv:
+  []
+  # - name: MY_ENV_VAR
+  #   value: my-value
+
+# -- imagePullSecrets used to pull the Docker image
 imagePullSecrets: []
+# -- nameOverride overrides the chart name
 nameOverride: ""
+# -- fullnameOverride overrides the full name of the chart
 fullnameOverride: ""
 
+# Service account configuration
 serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Automatically mount a ServiceAccount's API credentials?
+  # -- create tells if a service account should be created
+  create: false
+  # -- automount tells if the service account should be automounted
   automount: true
-  # Annotations to add to the service account
+  # -- annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- name is the name of the service account to use
   name: ""
 
+# -- podAnnotations to use
 podAnnotations: {}
+# -- podLabels to use
 podLabels: {}
 
+# Pod security context configuration
 podSecurityContext:
-  {}
-  # fsGroup: 2000
+  # -- fsGroup is the group ID to run the container as
+  fsGroup: 0
+  # -- runAsGroup is the group ID to run the container as
+  runAsGroup: 0
+  # -- runAsNonRoot tells if the container should run as a non-root user
+  runAsNonRoot: false
+  # -- runAsUser is the user ID to run the container as
+  runAsUser: 0
 
+# Security context configuration
 securityContext:
-  {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+  # -- allowPrivilegeEscalation tells if the container can request to allow privilege escalation
+  allowPrivilegeEscalation: false
+  # -- capabilities to add/drop
+  capabilities: {}
+  # -- privileged tells if the container is privileged
+  privileged: false
+  # -- runAsNonRoot tells if the container should run as a non-root user
+  runAsNonRoot: true
+  # -- runAsUser is the user ID to run the container as
+  runAsUser: 1000
+  # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
+  readOnlyRootFilesystem: false
+  # -- seLinuxOptions to add
+  seLinuxOptions: {}
 
+# Service configuration
 service:
+  # -- type is the type of service to create
   type: ClusterIP
+  # -- port is the port the service will listen on
   port: 80
 
+# Ingress configuration
 ingress:
+  # -- enabled allows you to enable or disable the Ingress
   enabled: false
+  # -- className is the ingress class to use
   className: ""
+  # -- annotations to add to the Ingress
   annotations:
     {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # -- hosts is the list of hostnames to be exposed
   hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+    []
+    # - host: blueprint-example.local
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+  # -- tls is the list of TLS configuration
   tls: []
-  #  - secretName: chart-example-tls
+  #  - secretName: blueprint-example-tls
   #    hosts:
-  #      - chart-example.local
+  #      - blueprint-example.local
 
+# -- resources to request for the pod
 resources:
   {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -77,37 +215,49 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- livenessProbe is a health check to determine if the container is still running
 livenessProbe:
   httpGet:
-    path: /
+    path: "/"
     port: http
+
+# -- readinessProbe is a health check to determine if the container is ready to serve traffic
 readinessProbe:
   httpGet:
-    path: /
+    path: "/"
     port: http
 
+# Configure autoscaling
 autoscaling:
+  # -- enabled allows you to enable or disable autoscaling
   enabled: false
+  # -- minReplicas is the minimum number of replicas that will be set when autoscaling is enabled
   minReplicas: 1
+  # -- maxReplicas is the maximum number of replicas that will be set when autoscaling is enabled
   maxReplicas: 100
+  # -- targetCPUUtilizationPercentage is the target average CPU utilization across all pods
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  # -- targetMemoryUtilizationPercentage is the target average memory utilization across all pods
+  targetMemoryUtilizationPercentage: 80
 
-# Additional volumes on the output Deployment definition.
+# -- volumes to mount on the output Deployment definition
 volumes: []
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
-# Additional volumeMounts on the output Deployment definition.
+# -- volume mounts to use
 volumeMounts: []
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
+# -- nodeSelector to use
 nodeSelector: {}
 
+# -- tolerations to use
 tolerations: []
 
+# -- affinity to use
 affinity: {}
