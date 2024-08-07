@@ -1,5 +1,40 @@
 apiVersion: v1
 entries:
+  blueprint:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/blueprint
+        - name: GitHub Repository
+          url: https://github.com/zazuko/blueprint
+        - name: Zazuko
+          url: https://www.zazuko.com/
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
+    appVersion: v0.1.0
+    created: "2024-08-07T09:23:38.405607998Z"
+    dependencies:
+    - condition: trifid.enabled
+      name: trifid
+      repository: https://charts.zazuko.com
+      version: 0.1.7
+    - condition: fuseki.enabled
+      name: fuseki
+      repository: https://charts.zazuko.com
+      version: 0.0.5
+    description: Zazuko Blueprint is an enterprise knowledge graph frontend and browser,
+      designed to make RDF Knowledge Graphs accessible and customizable for domain
+      users
+    digest: 19772954063994f27f5064ddd515e4d2ceb1fc514be8e85316b58c6c3f432783
+    home: https://github.com/zazuko/blueprint
+    icon: https://charts.zazuko.com/icons/logo-blueprint.svg
+    name: blueprint
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/blueprint-0.0.1/blueprint-0.0.1.tgz
+    version: 0.0.1
   fuseki:
   - annotations:
       artifacthub.io/links: |
@@ -294,4 +329,4 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-31T17:00:16.992406471Z"
+generated: "2024-08-07T09:23:38.405642943Z"
