@@ -21,7 +21,10 @@ jobs:
 
       - name: Install Helm dependencies
         run: |
-          helm dependency update zazuko/blueprint
+          for chart in zazuko/*; do
+            echo "- $chart"
+            helm dependency update "${chart}"
+          done
 
       - name: Lint Helm Charts
         run: |

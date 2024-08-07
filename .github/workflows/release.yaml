@@ -28,7 +28,10 @@ jobs:
 
       - name: Install Helm dependencies
         run: |
-          helm dependency update zazuko/blueprint
+          for chart in zazuko/*; do
+            echo "- $chart"
+            helm dependency update "${chart}"
+          done
 
       - name: Run helm-docs
         uses: losisin/helm-docs-github-action@v1.3.0
