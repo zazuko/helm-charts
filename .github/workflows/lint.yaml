@@ -21,9 +21,11 @@ jobs:
 
       - name: Install Helm dependencies
         run: |
+          # Iterate over all charts in the zazuko directory
           for chart in zazuko/*; do
-            echo "- $chart"
+            echo "- ${chart}"
             helm dependency update "${chart}"
+            echo ""
           done
 
       - name: Lint Helm Charts
