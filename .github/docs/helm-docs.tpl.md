@@ -24,5 +24,3 @@ helm install {{ template "chart.name" . }} zazuko/{{ template "chart.name" . }}
 {{ template "chart.requirementsSection" . }}
 
 {{ template "chart.sourcesSection" . }}
-
-{{ template "chart.requirementsSection" . }}
