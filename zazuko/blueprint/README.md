@@ -97,9 +97,3 @@ helm install blueprint zazuko/blueprint
 | https://charts.zazuko.com | fuseki | 0.0.5 |
 | https://charts.zazuko.com | trifid | 0.1.7 |
 
-## Requirements
-
-| Repository | Name | Version |
-|------------|------|---------|
-| https://charts.zazuko.com | fuseki | 0.0.5 |
-| https://charts.zazuko.com | trifid | 0.1.7 |
