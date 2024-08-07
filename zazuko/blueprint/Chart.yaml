@@ -23,7 +23,7 @@ version: 0.0.1
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "sha256:5f634605926c878094d3c740fb49bd8f73aa489a5fa34a0579bdf0260fc4f7c5"
+appVersion: "v0.1.0"
 
 annotations:
   artifacthub.io/license: Apache-2.0
