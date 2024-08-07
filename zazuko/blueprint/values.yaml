@@ -17,7 +17,7 @@ neptuneFtsEndpoint: ""
 # Trifid configuration
 trifid:
   # -- enabled tells if a Trifid instance should be deployed
-  enabled: true
+  enabled: false
 
   # Information about the SPARQL endpoint
   sparql:
@@ -41,7 +41,7 @@ trifid:
   # Ingress configuration
   ingress:
     # -- enabled allows you to enable or disable the Ingress
-    enabled: true
+    enabled: false
     # -- className is the ingress class to use
     className: ""
     # -- annotations to add to the Ingress
@@ -49,6 +49,8 @@ trifid:
       {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
+
+    ## Make sure to configure the following fields if you enable the Ingress
     # -- hosts is the list of hostnames to be exposed
     hosts:
       []
@@ -67,7 +69,7 @@ trifid:
 # Fuseki configuration
 fuseki:
   # -- enabled tells if a Fuseki instance should be deployed
-  enabled: true
+  enabled: false
 
   # Configuration
   config:
@@ -162,9 +164,9 @@ securityContext:
   # -- privileged tells if the container is privileged
   privileged: false
   # -- runAsNonRoot tells if the container should run as a non-root user
-  runAsNonRoot: true
+  runAsNonRoot: false
   # -- runAsUser is the user ID to run the container as
-  runAsUser: 1000
+  runAsUser: 0
   # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
   readOnlyRootFilesystem: false
   # -- seLinuxOptions to add
