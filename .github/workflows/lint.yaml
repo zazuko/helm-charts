@@ -21,6 +21,9 @@ jobs:
 
       - name: Install Helm dependencies
         run: |
+          # Add the Zazuko Helm repository
+          helm repo add zazuko https://charts.zazuko.com
+
           # Iterate over all charts in the zazuko directory
           for chart in zazuko/*; do
             echo "- ${chart}"
