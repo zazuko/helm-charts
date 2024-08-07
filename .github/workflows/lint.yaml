@@ -21,7 +21,7 @@ jobs:
 
       - name: Install Helm dependencies
         run: |
-          helm dependency build zazuko/blueprint
+          helm dependency update zazuko/blueprint
 
       - name: Lint Helm Charts
         run: |

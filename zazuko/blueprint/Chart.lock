@@ -5,5 +5,5 @@ dependencies:
 - name: fuseki
   repository: https://charts.zazuko.com
   version: 0.0.5
-digest: sha256:c53e7d417387e0c60f562ff68aba7814241e21de134783637cb380b042f88c6d
-generated: "2024-07-31T19:56:19.405208+02:00"
+digest: sha256:969373b1aaf41eb1e38722a610488abfe74bbee03af87cdd863b88c5f35947ef
+generated: "2024-08-07T08:22:47.980467+02:00"
