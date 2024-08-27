@@ -22,7 +22,7 @@ trifid:
   # Information about the SPARQL endpoint
   sparql:
     # -- endpoint is the URL of the SPARQL endpoint (required)
-    endpoint: "http://blueprint-fuseki:3030/query"
+    endpoint: "http://blueprint-fuseki:3030/ds/query"
     # -- username for the SPARQL endpoint
     username: ""
     # -- password for the SPARQL endpoint
