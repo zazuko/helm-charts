@@ -84,7 +84,7 @@ helm install blueprint zazuko/blueprint
 | trifid.ingress.enabled | bool | `false` | enabled allows you to enable or disable the Ingress |
 | trifid.ingress.hosts | list | `[]` | hosts is the list of hostnames to be exposed |
 | trifid.ingress.tls | list | `[]` | tls is the list of TLS configuration |
-| trifid.sparql.endpoint | string | `"http://blueprint-fuseki:3030/query"` | endpoint is the URL of the SPARQL endpoint (required) |
+| trifid.sparql.endpoint | string | `"http://blueprint-fuseki:3030/ds/query"` | endpoint is the URL of the SPARQL endpoint (required) |
 | trifid.sparql.password | string | `""` | password for the SPARQL endpoint |
 | trifid.sparql.username | string | `""` | username for the SPARQL endpoint |
 | volumeMounts | list | `[]` | volume mounts to use |
