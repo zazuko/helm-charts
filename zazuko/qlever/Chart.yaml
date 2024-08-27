@@ -1,0 +1,37 @@
+apiVersion: v2
+name: qlever
+description: Very fast SPARQL Engine, which can handle very large knowledge graphs like the complete Wikidata, offers context-sensitive autocompletion for SPARQL queries, and allows combination with text search. It's faster than engines like Blazegraph or Virtuoso, especially for queries involving large result sets.
+home: https://github.com/ad-freiburg/qlever
+icon: https://charts.zazuko.com/icons/logo-zazuko.svg
+
+# A chart can be either an 'application' or a 'library' chart.
+#
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+#
+# Library charts provide useful utilities or functions for the chart developer. They're included as
+# a dependency of application charts to inject those utilities and functions into the rendering
+# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.0.1
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+# It is recommended to use it with quotes.
+appVersion: "sha-76ada0b"
+
+annotations:
+  artifacthub.io/links: |
+    - name: Chart Source
+      url: https://github.com/zazuko/helm-charts/tree/main/zazuko/qlever
+    - name: QLever (GitHub)
+      url: https://github.com/ad-freiburg/qlever
+    - name: QLever UI (GitHub)
+      url: https://github.com/ad-freiburg/qlever-ui
+    - name: support
+      url: https://github.com/zazuko/helm-charts/issues

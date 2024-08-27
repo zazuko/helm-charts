@@ -1,0 +1,6 @@
+Thanks for using our Helm Chart!
+
+To report any issue:
+- about the Helm Chart: https://github.com/zazuko/helm-charts
+- about our custom QLever Docker images: https://github.com/zazukoians/qlever-tests
+- about QLever itself: https://github.com/ad-freiburg/qlever
