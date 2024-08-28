@@ -3,6 +3,37 @@ nameOverride: ""
 # -- fullnameOverride overrides the full name of the chart
 fullnameOverride: ""
 
+# QLever configuration
+config:
+  data:
+    name: default
+    # name: olympics
+    # base_url: https://github.com/wallscope/olympics-rdf
+    # get_data_cmd: curl -sLo olympics.zip -C - https://github.com/wallscope/olympics-rdf/raw/master/data/olympics-nt-nodup.zip && unzip -q -o olympics.zip && rm olympics.zip
+    # description: 120 Years of Olympics, data from https://github.com/wallscope/olympics-rdf
+    # text_description: All literals, search with FILTER CONTAINS(?var, "...")
+  index:
+    settings_json:
+      ascii-prefixes-only: false
+      num_triples_per_batch: 100000
+
+    # input_files: olympics.nt
+    # cat_input_files: cat olympics.nt
+  server:
+    host_name: 127.0.0.1 # Hostname used to access the server ; the value of the hostname from `server.ingress.hosts[0].host` should be the same
+    port: 7001
+    access_token: default_random_access_token
+    # access_token: olympics_7643543846_Zs6nw7yi3Z9m
+    memory_for_queries: 5G
+    cache_max_size: 2G
+    timeout: 30s
+  runtime:
+    system: native
+  ui:
+    ui_port: 7002
+    ui_config: default
+    # ui_config: olympics
+
 # Service account configuration
 serviceAccount:
   # -- create tells if a service account should be created
@@ -112,14 +143,12 @@ server:
 
   # -- livenessProbe is a health check to determine if the container is still running
   livenessProbe:
-    httpGet:
-      path: "/"
+    tcpSocket:
       port: http
 
   # -- readinessProbe is a health check to determine if the container is ready to serve traffic
   readinessProbe:
-    httpGet:
-      path: "/"
+    tcpSocket:
       port: http
 
   # -- volumes to mount on the output Deployment definition

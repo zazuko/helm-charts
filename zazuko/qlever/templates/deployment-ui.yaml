@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "qlever.fullname" . }}-server
+  name: {{ include "qlever.fullname" . }}-ui
   labels:
-    app.kubernetes.io/component: server
+    app.kubernetes.io/component: ui
     {{- include "qlever.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/component: server
+      app.kubernetes.io/component: ui
       {{- include "qlever.selectorLabels" . | nindent 6 }}
   template:
     metadata:
@@ -17,28 +17,28 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app.kubernetes.io/component: server
+        app.kubernetes.io/component: ui
         {{- include "qlever.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- with .Values.server.imagePullSecrets }}
+      {{- with .Values.ui.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "qlever.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.server.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.ui.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}-server
+        - name: {{ .Chart.Name }}-ui
           securityContext:
-            {{- toYaml .Values.server.securityContext | nindent 12 }}
-          image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.server.image.pullPolicy }}
+            {{- toYaml .Values.ui.securityContext | nindent 12 }}
+          image: "{{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.ui.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.server.service.port }}
+              containerPort: {{ .Values.ui.service.port }}
               protocol: TCP
           env:
             {{- range $key, $value := .Values.config }}
@@ -52,28 +52,28 @@ spec:
             {{- end }}
             {{- end }}
           livenessProbe:
-            {{- toYaml .Values.server.livenessProbe | nindent 12 }}
+            {{- toYaml .Values.ui.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.server.readinessProbe | nindent 12 }}
+            {{- toYaml .Values.ui.readinessProbe | nindent 12 }}
           resources:
-            {{- toYaml .Values.server.resources | nindent 12 }}
-          {{- with .Values.server.volumeMounts }}
+            {{- toYaml .Values.ui.resources | nindent 12 }}
+          {{- with .Values.ui.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.server.volumes }}
+      {{- with .Values.ui.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.server.nodeSelector }}
+      {{- with .Values.ui.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.server.affinity }}
+      {{- with .Values.ui.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.server.tolerations }}
+      {{- with .Values.ui.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
