@@ -21,6 +21,7 @@ config:
     # cat_input_files: cat olympics.nt
   server:
     host_name: 127.0.0.1 # Hostname used to access the server ; the value of the hostname from `server.ingress.hosts[0].host` should be the same
+    endpoint: http://127.0.0.1:7001 # Endpoint used to access the server from the UI
     port: 7001
     access_token: default_random_access_token
     # access_token: olympics_7643543846_Zs6nw7yi3Z9m
