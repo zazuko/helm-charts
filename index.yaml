@@ -190,6 +190,32 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/fuseki-0.0.1/fuseki-0.0.1.tgz
     version: 0.0.1
+  qlever:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/qlever
+        - name: QLever (GitHub)
+          url: https://github.com/ad-freiburg/qlever
+        - name: QLever UI (GitHub)
+          url: https://github.com/ad-freiburg/qlever-ui
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
+    appVersion: sha-76ada0b
+    created: "2024-08-28T12:37:02.076358351Z"
+    description: Very fast SPARQL Engine, which can handle very large knowledge graphs
+      like the complete Wikidata, offers context-sensitive autocompletion for SPARQL
+      queries, and allows combination with text search. It's faster than engines like
+      Blazegraph or Virtuoso, especially for queries involving large result sets.
+    digest: 93ef33610328b4087a2c27554568d076e863082be3a6302223b231731018cb66
+    home: https://github.com/ad-freiburg/qlever
+    icon: https://charts.zazuko.com/icons/logo-zazuko.svg
+    name: qlever
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/qlever-0.0.1/qlever-0.0.1.tgz
+    version: 0.0.1
   trifid:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -363,4 +389,4 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
     version: 0.1.0
-generated: "2024-08-27T15:42:26.242017327Z"
+generated: "2024-08-28T12:37:02.076395069Z"
