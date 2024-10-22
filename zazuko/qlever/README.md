@@ -1,6 +1,6 @@
 # qlever
 
-![Version: 0.0.5](https://img.shields.io/badge/Version-0.0.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.2](https://img.shields.io/badge/AppVersion-v0.1.2-informational?style=flat-square)
+![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.2](https://img.shields.io/badge/AppVersion-v0.1.2-informational?style=flat-square)
 
 Very fast SPARQL Engine, which can handle very large knowledge graphs like the complete Wikidata, offers context-sensitive autocompletion for SPARQL queries, and allows combination with text search. It's faster than engines like Blazegraph or Virtuoso, especially for queries involving large result sets.
 
@@ -19,7 +19,7 @@ helm install qlever zazuko/qlever
 |-----|------|---------|-------------|
 | config.data.name | string | `"default"` |  |
 | config.index.settings_json.ascii-prefixes-only | bool | `false` |  |
-| config.index.settings_json.num_triples_per_batch | int | `100000` |  |
+| config.index.settings_json.num-triples-per-batch | int | `100000` |  |
 | config.runtime.system | string | `"native"` |  |
 | config.server.access_token | string | `"default_random_access_token"` |  |
 | config.server.cache_max_size | string | `"2G"` |  |
