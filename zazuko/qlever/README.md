@@ -1,6 +1,6 @@
 # qlever
 
-![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.1.2](https://img.shields.io/badge/AppVersion-v0.1.2-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.0](https://img.shields.io/badge/AppVersion-v0.2.0-informational?style=flat-square)
 
 Very fast SPARQL Engine, which can handle very large knowledge graphs like the complete Wikidata, offers context-sensitive autocompletion for SPARQL queries, and allows combination with text search. It's faster than engines like Blazegraph or Virtuoso, especially for queries involving large result sets.
 
@@ -33,6 +33,7 @@ helm install qlever zazuko/qlever
 | fullnameOverride | string | `""` | fullnameOverride overrides the full name of the chart |
 | nameOverride | string | `""` | nameOverride overrides the chart name |
 | server.affinity | object | `{}` | affinity to use |
+| server.extraEnv | list | `[]` | extraEnv is a list of extra environment variables to set |
 | server.image.pullPolicy | string | `"IfNotPresent"` | pullPolicy is the policy to use when pulling the image |
 | server.image.repository | string | `"ghcr.io/zazukoians/qlever-server"` | repository is the Docker image to use |
 | server.image.tag | string | `""` | tag is used to overrides the image tag whose default is the chart appVersion |
@@ -70,6 +71,7 @@ helm install qlever zazuko/qlever
 | serviceAccount.create | bool | `false` | create tells if a service account should be created |
 | serviceAccount.name | string | `""` | name is the name of the service account to use |
 | ui.affinity | object | `{}` | affinity to use |
+| ui.extraEnv | list | `[]` | extraEnv is a list of extra environment variables to set |
 | ui.image.pullPolicy | string | `"IfNotPresent"` | pullPolicy is the policy to use when pulling the image |
 | ui.image.repository | string | `"ghcr.io/zazukoians/qlever-ui"` | repository is the Docker image to use |
 | ui.image.tag | string | `""` | tag is used to overrides the image tag whose default is the chart appVersion |
