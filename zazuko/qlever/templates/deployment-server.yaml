@@ -51,6 +51,9 @@ spec:
               {{- end }}
             {{- end }}
             {{- end }}
+            {{- with .Values.server.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
           livenessProbe:
             {{- toYaml .Values.server.livenessProbe | nindent 12 }}
           readinessProbe:
