@@ -39,7 +39,7 @@ jobs:
           done
 
       - name: Run helm-docs
-        uses: losisin/helm-docs-github-action@v1.3.3
+        uses: losisin/helm-docs-github-action@v1.3.4
         with:
           chart-search-root: zazuko
           git-push: true
