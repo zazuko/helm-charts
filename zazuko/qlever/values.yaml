@@ -72,13 +72,13 @@ server:
   # Pod security context configuration
   podSecurityContext:
     # -- fsGroup is the group ID to run the container as
-    fsGroup: 1000
+    fsGroup: 65534
     # -- runAsGroup is the group ID to run the container as
-    runAsGroup: 1000
+    runAsGroup: 65534
     # -- runAsNonRoot tells if the container should run as a non-root user
     runAsNonRoot: true
     # -- runAsUser is the user ID to run the container as
-    runAsUser: 1000
+    runAsUser: 65534
 
   # Security context configuration
   securityContext:
@@ -91,7 +91,7 @@ server:
     # -- runAsNonRoot tells if the container should run as a non-root user
     runAsNonRoot: true
     # -- runAsUser is the user ID to run the container as
-    runAsUser: 1000
+    runAsUser: 65534
     # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
     readOnlyRootFilesystem: false
     # -- seLinuxOptions to add
@@ -153,17 +153,17 @@ server:
       port: http
 
   # -- volumes to mount on the output Deployment definition
-  volumes: []
-  # - name: foo
-  #   secret:
-  #     secretName: mysecret
-  #     optional: false
+  volumes:
+    []
+    # - name: data
+    #   emptyDir:
+    #     sizeLimit: 500Mi
 
   # -- volume mounts to use
-  volumeMounts: []
-  # - name: foo
-  #   mountPath: "/etc/foo"
-  #   readOnly: true
+  volumeMounts:
+    []
+    # - name: data
+    #   mountPath: "/data"
 
   # -- nodeSelector to use
   nodeSelector: {}
@@ -206,13 +206,13 @@ ui:
   # Pod security context configuration
   podSecurityContext:
     # -- fsGroup is the group ID to run the container as
-    fsGroup: 1000
+    fsGroup: 65534
     # -- runAsGroup is the group ID to run the container as
-    runAsGroup: 1000
+    runAsGroup: 65534
     # -- runAsNonRoot tells if the container should run as a non-root user
     runAsNonRoot: true
     # -- runAsUser is the user ID to run the container as
-    runAsUser: 1000
+    runAsUser: 65534
 
   # Security context configuration
   securityContext:
@@ -225,7 +225,7 @@ ui:
     # -- runAsNonRoot tells if the container should run as a non-root user
     runAsNonRoot: true
     # -- runAsUser is the user ID to run the container as
-    runAsUser: 1000
+    runAsUser: 65534
     # -- readOnlyRootFilesystem tells if the container should have a read-only root filesystem
     readOnlyRootFilesystem: false
     # -- seLinuxOptions to add
@@ -289,17 +289,18 @@ ui:
       port: http
 
   # -- volumes to mount on the output Deployment definition
-  volumes: []
-  # - name: foo
-  #   secret:
-  #     secretName: mysecret
-  #     optional: false
+  volumes:
+    []
+    # - name: data
+    #   emptyDir:
+    #     sizeLimit: 500Mi
 
   # -- volume mounts to use
-  volumeMounts: []
-  # - name: foo
-  #   mountPath: "/etc/foo"
-  #   readOnly: true
+  volumeMounts:
+    []
+    # - name: data
+    #   mountPath: "/data"
+    #   readOnly: true
 
   # -- nodeSelector to use
   nodeSelector: {}
@@ -313,5 +314,7 @@ ui:
   # -- extraEnv is a list of extra environment variables to set
   extraEnv:
     []
+    # - name: MAP_VIEW_BASE_URL
+    #   value: http://localhost:7003
     # - name: MY_ENV_VAR
     #   value: my-value
