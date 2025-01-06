@@ -72,9 +72,9 @@ server:
   # Pod security context configuration
   podSecurityContext:
     # -- fsGroup is the group ID to run the container as
-    fsGroup: 65534
+    fsGroup: 0
     # -- runAsGroup is the group ID to run the container as
-    runAsGroup: 65534
+    runAsGroup: 0
     # -- runAsNonRoot tells if the container should run as a non-root user
     runAsNonRoot: true
     # -- runAsUser is the user ID to run the container as
@@ -206,9 +206,9 @@ ui:
   # Pod security context configuration
   podSecurityContext:
     # -- fsGroup is the group ID to run the container as
-    fsGroup: 65534
+    fsGroup: 0
     # -- runAsGroup is the group ID to run the container as
-    runAsGroup: 65534
+    runAsGroup: 0
     # -- runAsNonRoot tells if the container should run as a non-root user
     runAsNonRoot: true
     # -- runAsUser is the user ID to run the container as
