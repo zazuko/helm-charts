@@ -1,6 +1,6 @@
 # qlever
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.4.0](https://img.shields.io/badge/AppVersion-v0.4.0-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
 
 Very fast SPARQL Engine, which can handle very large knowledge graphs like the complete Wikidata, offers context-sensitive autocompletion for SPARQL queries, and allows combination with text search. It's faster than engines like Blazegraph or Virtuoso, especially for queries involving large result sets.
 
@@ -47,8 +47,8 @@ helm install qlever zazuko/qlever
 | server.nodeSelector | object | `{}` | nodeSelector to use |
 | server.podAnnotations | object | `{}` | podAnnotations to use |
 | server.podLabels | object | `{}` | podLabels to use |
-| server.podSecurityContext.fsGroup | int | `65534` | fsGroup is the group ID to run the container as |
-| server.podSecurityContext.runAsGroup | int | `65534` | runAsGroup is the group ID to run the container as |
+| server.podSecurityContext.fsGroup | int | `0` | fsGroup is the group ID to run the container as |
+| server.podSecurityContext.runAsGroup | int | `0` | runAsGroup is the group ID to run the container as |
 | server.podSecurityContext.runAsNonRoot | bool | `true` | runAsNonRoot tells if the container should run as a non-root user |
 | server.podSecurityContext.runAsUser | int | `65534` | runAsUser is the user ID to run the container as |
 | server.readinessProbe | object | `{"tcpSocket":{"port":"http"}}` | readinessProbe is a health check to determine if the container is ready to serve traffic |
@@ -85,8 +85,8 @@ helm install qlever zazuko/qlever
 | ui.nodeSelector | object | `{}` | nodeSelector to use |
 | ui.podAnnotations | object | `{}` | podAnnotations to use |
 | ui.podLabels | object | `{}` | podLabels to use |
-| ui.podSecurityContext.fsGroup | int | `65534` | fsGroup is the group ID to run the container as |
-| ui.podSecurityContext.runAsGroup | int | `65534` | runAsGroup is the group ID to run the container as |
+| ui.podSecurityContext.fsGroup | int | `0` | fsGroup is the group ID to run the container as |
+| ui.podSecurityContext.runAsGroup | int | `0` | runAsGroup is the group ID to run the container as |
 | ui.podSecurityContext.runAsNonRoot | bool | `true` | runAsNonRoot tells if the container should run as a non-root user |
 | ui.podSecurityContext.runAsUser | int | `65534` | runAsUser is the user ID to run the container as |
 | ui.readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | readinessProbe is a health check to determine if the container is ready to serve traffic |
