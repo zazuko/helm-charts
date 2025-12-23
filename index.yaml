@@ -803,6 +803,29 @@ entries:
         - name: support
           url: https://github.com/zazuko/helm-charts/issues
     apiVersion: v2
+    appVersion: v5.3.0
+    created: "2025-12-23T13:34:53.114346512Z"
+    description: Lightweight Linked Data Server and Proxy
+    digest: 2aa652ce15a0071d998f7918dc611203e91704c0aec50d81cb4ba73bf9aab17c
+    home: https://github.com/zazuko/trifid
+    icon: https://charts.zazuko.com/icons/logo-zazuko.svg
+    name: trifid
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.13/trifid-0.1.13.tgz
+    version: 0.1.13
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/trifid
+        - name: Zazuko
+          url: https://www.zazuko.com/
+        - name: Trifid
+          url: https://github.com/zazuko/trifid
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
     appVersion: v5.1.5
     created: "2025-11-04T13:57:04.006494649Z"
     description: Lightweight Linked Data Server and Proxy
@@ -1078,4 +1101,4 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-01T12:38:14.708696746Z"
+generated: "2025-12-23T13:34:53.114499758Z"
