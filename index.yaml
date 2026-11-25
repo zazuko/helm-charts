@@ -83,6 +83,30 @@ entries:
         - name: support
           url: https://github.com/zazuko/helm-charts/issues
     apiVersion: v2
+    appVersion: v5.3.0
+    created: "2026-11-25T10:04:42.248363824Z"
+    description: Fuseki with GeoSPARQL support
+    digest: 25688fd9d590a710eb48ad952986dc61b694ae6ed0de150e6316d2e451145bd3
+    home: https://github.com/zazuko/fuseki-geosparql
+    icon: https://charts.zazuko.com/icons/logo-apache-jena.svg
+    name: fuseki
+    type: application
+    urls:
+    - https://github.com/zazuko/helm-charts/releases/download/fuseki-0.2.4/fuseki-0.2.4.tgz
+    version: 0.2.4
+  - annotations:
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/zazuko/helm-charts/tree/main/zazuko/fuseki
+        - name: Apache Jena Fuseki
+          url: https://jena.apache.org/documentation/fuseki2/
+        - name: GitHub Repository
+          url: https://github.com/zazuko/fuseki-geosparql
+        - name: Zazuko
+          url: https://www.zazuko.com/
+        - name: support
+          url: https://github.com/zazuko/helm-charts/issues
+    apiVersion: v2
     appVersion: v5.2.0
     created: "2026-08-18T14:55:51.256822354Z"
     description: Fuseki with GeoSPARQL support
@@ -1618,4 +1642,4 @@ entries:
     urls:
     - https://github.com/zazuko/helm-charts/releases/download/trifid-0.1.0/trifid-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-05T12:00:59.737028959Z"
+generated: "2026-11-25T10:04:42.248521046Z"
